@@ -1,1 +1,97 @@
-{"sections":{"image_banner_8tMaNB":{"type":"image-banner","blocks":{"text_BczUje":{"type":"text","settings":{"text":"<strong>Need expert guidance before you build? <\/strong>Book a personalized 30-minute strategy session for just <strong>$49 CAD<\/strong> — fully credited toward any website package when you move forward.","text_style":"body"}},"buttons_Dn8FMh":{"type":"buttons","settings":{"button_label_1":"View Service Packages","button_link_1":"shopify:\/\/pages\/services","button_style_secondary_1":true,"button_label_2":"Book Now","button_link_2":"shopify:\/\/pages\/contact-us","button_style_secondary_2":false}}},"block_order":["text_BczUje","buttons_Dn8FMh"],"name":"t:sections.image-banner.presets.name","settings":{"image":"shopify:\/\/shop_images\/width_800_a8889319-380e-4fd1-9836-95487a10e2dc.jpg","image_overlay_opacity":0,"image_height":"medium","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"scheme-3","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"featured_collection":{"type":"featured-collection","settings":{"collection":"best-web-options","products_to_show":5,"title":"Web Design & Branding Packages","heading_size":"h0","description":"<p>Explore our service bundles—from simple launches to full-scale branding and marketing solutions.<\/p>","show_description":true,"description_style":"body","columns_desktop":3,"enable_desktop_slider":true,"full_width":true,"show_view_all":true,"view_all_style":"outline","color_scheme":"scheme-1","image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"none","columns_mobile":"1","swipe_on_mobile":true,"padding_top":44,"padding_bottom":36}}},"order":["image_banner_8tMaNB","featured_collection"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_8tMaNB": {
+      "type": "image-banner",
+      "blocks": {
+        "text_BczUje": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Need expert guidance before you build? </strong>Book a personalized 30-minute strategy session for just <strong>$49 CAD</strong> — fully credited toward any website package when you move forward.",
+            "text_style": "body"
+          }
+        },
+        "buttons_Dn8FMh": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "View Service Packages",
+            "button_link_1": "shopify://pages/services",
+            "button_style_secondary_1": true,
+            "button_label_2": "Book Now",
+            "button_link_2": "shopify://pages/contact-us",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "text_BczUje",
+        "buttons_Dn8FMh"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/width_800_a8889319-380e-4fd1-9836-95487a10e2dc.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "best-web-options",
+        "products_to_show": 5,
+        "title": "Web Design & Branding Packages",
+        "heading_size": "h0",
+        "description": "<p>Explore our service bundles—from simple launches to full-scale branding and marketing solutions.</p>",
+        "show_description": true,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": true,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_Ub8Nee": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{% comment %}\n  Template Showcase Main Section - All 15 Templates\n{% endcomment %}\n\n<section class=\"template-showcase-section\">\n  <div class=\"container\">\n    <!-- Section Header -->\n    <div class=\"section-header\">\n      <div class=\"free-badge\">\n        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n          <path d=\"M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z\"></path>\n        </svg>\n        FREE for Our Clients\n      </div>\n      <h2 class=\"section-title\">Professional Design Templates</h2>\n      <p class=\"section-subtitle\">\n        Exclusive collection of premium templates available at no cost to our valued clients. \n        Each template is professionally designed, fully customizable, and ready to elevate your brand.\n      </p>\n    </div>\n\n    <!-- Filter Container -->\n    <div class=\"filter-container\">\n      <div class=\"search-wrapper\">\n        <svg class=\"search-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n          <circle cx=\"11\" cy=\"11\" r=\"8\"></circle>\n          <path d=\"M21 21l-4.35-4.35\"></path>\n        </svg>\n        <input type=\"text\" class=\"search-input\" placeholder=\"Search templates by name, category, or style...\" id=\"templateSearch\">\n      </div>\n      \n      <div class=\"filter-tabs\">\n        <button class=\"filter-tab active\" data-filter=\"all\">All Templates</button>\n        <button class=\"filter-tab\" data-filter=\"video\">Video Templates</button>\n        <button class=\"filter-tab\" data-filter=\"social\">Social Media</button>\n        <button class=\"filter-tab\" data-filter=\"event\">Events</button>\n        <button class=\"filter-tab\" data-filter=\"food\">Food & Dining</button>\n        <button class=\"filter-tab\" data-filter=\"fashion\">Fashion</button>\n        <button class=\"filter-tab\" data-filter=\"travel\">Travel</button>\n        <button class=\"filter-tab\" data-filter=\"business\">Business</button>\n        <button class=\"filter-tab\" data-filter=\"realestate\">Real Estate</button>\n        <button class=\"filter-tab\" data-filter=\"technology\">Technology</button>\n        <button class=\"filter-tab\" data-filter=\"beauty\">Beauty & Salon</button>\n      </div>\n    </div>\n\n    <!-- Templates Grid -->\n    <div class=\"templates-grid\" id=\"templatesGrid\">\n      <!-- ... (all 15 template cards go here, as provided above) ... -->\n    </div>\n\n    <!-- CTA Section -->\n    <div class=\"cta-section\">\n      <h3 class=\"cta-title\">Ready to Elevate Your Brand?</h3>\n      <p class=\"cta-description\">\n        These premium templates are just the beginning. As our client, you'll receive unlimited access to our growing template library, \n        plus custom design services tailored to your brand's unique needs.\n      </p>\n      <div class=\"cta-buttons\">\n        <a href=\"/contact\" class=\"cta-btn btn-primary\">Become a Client</a>\n        <a href=\"/services\" class=\"cta-btn btn-secondary\">View Our Services</a>\n      </div>\n    </div>\n  </div>\n</section>\n\n<script>\n// ... (JavaScript as provided above) ...\n</script>\n\n<style>\n/* ... (CSS as provided above) ... */\n</style>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "image_banner_8tMaNB",
+    "featured_collection",
+    "custom_liquid_Ub8Nee"
+  ]
+}
