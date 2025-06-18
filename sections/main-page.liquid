@@ -115,6 +115,36 @@
       padding: 0 1rem;
     }
   }
+
+  .service-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow 0.2s;
+  }
+  .service-card:hover {
+    box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+  }
+  .service-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #222;
+  }
+  .service-card ul {
+    padding-left: 1.2rem;
+    margin: 0;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .service-card li {
+    margin-bottom: 0.7rem;
+  }
 {%- endstyle -%}
 
 <div class="main-page-full-width section-{{ section.id }}-padding">
@@ -126,86 +156,109 @@
   </div>
 </div>
 
-<!-- SERVICES PAGE UPDATED CONTENT (NO EMOJIS) -->
-<div class="services-page-content">
-  <h2>Consulting & Strategy</h2>
-  <ul>
-    <li>Business & digital strategy sessions</li>
-    <li>Brand positioning & market research</li>
-    <li>Project management & launch planning</li>
-  </ul>
-
-  <h2>Mobile & App Services</h2>
-  <ul>
-    <li>Mobile app design & development</li>
-    <li>App store optimization</li>
-    <li>Progressive web apps (PWAs)</li>
-  </ul>
-
-  <h2>AI & Automation Services</h2>
-  <ul>
-    <li>AI-powered chatbots & automations</li>
-    <li>Workflow automation & integrations</li>
-    <li>Custom AI solutions for business</li>
-  </ul>
-
-  <h2>Web Design & Development</h2>
-  <ul>
-    <li><strong>LaunchSite Basic – $299 CAD</strong><br>5-page website (WordPress or Shopify), content writing, banners, 3-month hosting, SEO setup</li>
-    <li><strong>BrandSite Essential – $399 CAD</strong><br>7-page custom website with design, content, SEO setup, banners, project manager</li>
-    <li><strong>BrandSite Plus – $599 CAD</strong><br>More advanced pages & layout, extra customization</li>
-    <li><strong>EliteSite Pro – $699 CAD</strong><br>Full-service premium website with concierge-level support & UX/UI optimization</li>
-    <li><strong>Ultimate Growth Bundle – $1,097 CAD</strong><br>Premium Website + Premium Design Subscription + Analytics Setup</li>
-  </ul>
-
-  <h2>Creative Subscriptions (Monthly Design Plans)</h2>
-  <ul>
-    <li><strong>DesignLite Monthly – $299 CAD/mo</strong><br>Unlimited static/animated ads, social posts, logo & simple visuals</li>
-    <li><strong>DesignPlus Monthly – $399 CAD/mo</strong><br>Adds landing pages, ebooks, merch, basic motion design</li>
-    <li><strong>DesignPro Monthly – $499 CAD/mo</strong><br>Project manager, 15 hrs/mo, complex campaigns & heavy illustrations</li>
-    <li><strong>Influencer Igniter – $1,675 CAD</strong><br>Full branding kit, templates, content & strategy for creators (one-time)</li>
-  </ul>
-
-  <h2>Marketing & Analytics Services</h2>
-  <ul>
-    <li><strong>InsightBoost Setup – $299 CAD</strong><br>Google Analytics 4 setup + event tracking + support</li>
-    <li><strong>LocalRank Starter – $199 CAD</strong><br>Google My Business profile optimization</li>
-    <li><strong>GrowthBlock Pro – $499 CAD</strong><br>Design + brand strategy for new companies</li>
-    <li><strong>MicroTask Boost – from $127 CAD</strong><br>Small one-off marketing/design jobs</li>
-  </ul>
-
-  <h2>Paid Ad Support Services</h2>
-  <ul>
-    <li><strong>AdLaunch Google – $299 CAD</strong><br>Google Ads setup or audit</li>
-    <li><strong>AdLaunch Meta – $299 CAD</strong><br>Facebook/Instagram ad creative & setup</li>
-  </ul>
-
-  <h2>Hosting</h2>
-  <ul>
-    <li><strong>CoreHost 1-Year – $169 CAD</strong><br>1-year hosting + email + support</li>
-    <li><strong>CoreHost 3-Year – $244.90 CAD</strong><br>3-year hosting plan</li>
-  </ul>
-
-  <h2>Brand Identity Design</h2>
-  <ul>
-    <li><strong>LogoStart – $208 CAD</strong><br>Simple business logo (2 concepts)</li>
-    <li><strong>LogoPro Kit – $283 CAD</strong><br>High-res business logo with brand colors & fonts</li>
-    <li><strong>CardCraft Design – $156 CAD</strong><br>Custom-designed business cards (print-ready)</li>
-  </ul>
-
-  <h2>Printed Marketing Collateral</h2>
-  <ul>
-    <li><strong>PrintCards (500) – $152 CAD</strong><br>Premium business cards</li>
-    <li><strong>RackImpact (250) – $152 CAD</strong><br>Rack cards for local promotion</li>
-    <li><strong>PostMax (250) – $152 CAD</strong><br>Postcards for direct mail campaigns</li>
-  </ul>
-
-  <h2>Gift Cards</h2>
-  <ul>
-    <li><strong>BrandBuilder Gift Card – $125 CAD</strong><br>Buy $100, Get $125 credit promo</li>
-  </ul>
+<!-- MODERN SERVICES GRID (MATCHES EXISTING STYLE) -->
+<div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 2.5rem;">
+  <!-- Consulting & Strategy -->
+  <div class="service-card">
+    <h3>Consulting & Strategy</h3>
+    <ul>
+      <li>Business & digital strategy sessions</li>
+      <li>Brand positioning & market research</li>
+      <li>Project management & launch planning</li>
+    </ul>
+  </div>
+  <!-- Mobile & App Services -->
+  <div class="service-card">
+    <h3>Mobile & App Services</h3>
+    <ul>
+      <li>Mobile app design & development</li>
+      <li>App store optimization</li>
+      <li>Progressive web apps (PWAs)</li>
+    </ul>
+  </div>
+  <!-- AI & Automation Services -->
+  <div class="service-card">
+    <h3>AI & Automation Services</h3>
+    <ul>
+      <li>AI-powered chatbots & automations</li>
+      <li>Workflow automation & integrations</li>
+      <li>Custom AI solutions for business</li>
+    </ul>
+  </div>
+  <!-- Web Design & Development -->
+  <div class="service-card">
+    <h3>Web Design & Development</h3>
+    <ul>
+      <li><strong>LaunchSite Basic – $299 CAD</strong><br>5-page website (WordPress or Shopify), content writing, banners, 3-month hosting, SEO setup</li>
+      <li><strong>BrandSite Essential – $399 CAD</strong><br>7-page custom website with design, content, SEO setup, banners, project manager</li>
+      <li><strong>BrandSite Plus – $599 CAD</strong><br>More advanced pages & layout, extra customization</li>
+      <li><strong>EliteSite Pro – $699 CAD</strong><br>Full-service premium website with concierge-level support & UX/UI optimization</li>
+      <li><strong>Ultimate Growth Bundle – $1,097 CAD</strong><br>Premium Website + Premium Design Subscription + Analytics Setup</li>
+    </ul>
+  </div>
+  <!-- Creative Subscriptions -->
+  <div class="service-card">
+    <h3>Creative Subscriptions (Monthly Design Plans)</h3>
+    <ul>
+      <li><strong>DesignLite Monthly – $299 CAD/mo</strong><br>Unlimited static/animated ads, social posts, logo & simple visuals</li>
+      <li><strong>DesignPlus Monthly – $399 CAD/mo</strong><br>Adds landing pages, ebooks, merch, basic motion design</li>
+      <li><strong>DesignPro Monthly – $499 CAD/mo</strong><br>Project manager, 15 hrs/mo, complex campaigns & heavy illustrations</li>
+      <li><strong>Influencer Igniter – $1,675 CAD</strong><br>Full branding kit, templates, content & strategy for creators (one-time)</li>
+    </ul>
+  </div>
+  <!-- Marketing & Analytics Services -->
+  <div class="service-card">
+    <h3>Marketing & Analytics Services</h3>
+    <ul>
+      <li><strong>InsightBoost Setup – $299 CAD</strong><br>Google Analytics 4 setup + event tracking + support</li>
+      <li><strong>LocalRank Starter – $199 CAD</strong><br>Google My Business profile optimization</li>
+      <li><strong>GrowthBlock Pro – $499 CAD</strong><br>Design + brand strategy for new companies</li>
+      <li><strong>MicroTask Boost – from $127 CAD</strong><br>Small one-off marketing/design jobs</li>
+    </ul>
+  </div>
+  <!-- Paid Ad Support Services -->
+  <div class="service-card">
+    <h3>Paid Ad Support Services</h3>
+    <ul>
+      <li><strong>AdLaunch Google – $299 CAD</strong><br>Google Ads setup or audit</li>
+      <li><strong>AdLaunch Meta – $299 CAD</strong><br>Facebook/Instagram ad creative & setup</li>
+    </ul>
+  </div>
+  <!-- Hosting -->
+  <div class="service-card">
+    <h3>Hosting</h3>
+    <ul>
+      <li><strong>CoreHost 1-Year – $169 CAD</strong><br>1-year hosting + email + support</li>
+      <li><strong>CoreHost 3-Year – $244.90 CAD</strong><br>3-year hosting plan</li>
+    </ul>
+  </div>
+  <!-- Brand Identity Design -->
+  <div class="service-card">
+    <h3>Brand Identity Design</h3>
+    <ul>
+      <li><strong>LogoStart – $208 CAD</strong><br>Simple business logo (2 concepts)</li>
+      <li><strong>LogoPro Kit – $283 CAD</strong><br>High-res business logo with brand colors & fonts</li>
+      <li><strong>CardCraft Design – $156 CAD</strong><br>Custom-designed business cards (print-ready)</li>
+    </ul>
+  </div>
+  <!-- Printed Marketing Collateral -->
+  <div class="service-card">
+    <h3>Printed Marketing Collateral</h3>
+    <ul>
+      <li><strong>PrintCards (500) – $152 CAD</strong><br>Premium business cards</li>
+      <li><strong>RackImpact (250) – $152 CAD</strong><br>Rack cards for local promotion</li>
+      <li><strong>PostMax (250) – $152 CAD</strong><br>Postcards for direct mail campaigns</li>
+    </ul>
+  </div>
+  <!-- Gift Cards -->
+  <div class="service-card">
+    <h3>Gift Cards</h3>
+    <ul>
+      <li><strong>BrandBuilder Gift Card – $125 CAD</strong><br>Buy $100, Get $125 credit promo</li>
+    </ul>
+  </div>
 </div>
-<!-- END SERVICES PAGE UPDATED CONTENT (NO EMOJIS) -->
+<!-- END MODERN SERVICES GRID -->
 
 {% schema %}
 {
