@@ -102,6 +102,9 @@
                 {%- if article.comments_count > 0 and blog.comments_enabled? -%}
                   <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
                 {%- endif -%}
+                <a href="{{ article.url }}" class="button button--primary read-full-article" style="margin-top: 1rem; display: inline-block;">
+                  Read Full Article
+                </a>
               </div>
             {%- endif -%}
           </div>
