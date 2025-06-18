@@ -514,6 +514,7 @@ body[data-page-type='index'] .banner:first-of-type .banner__box,
   max-width: 100vw;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 8rem;
 }
 
 body[data-page-type='index'] #Banner-1 .banner__heading,
@@ -556,6 +557,7 @@ body[data-page-type='index'] .banner:first-of-type .banner__buttons .button,
   body[data-page-type='index'] .banner:first-of-type .banner__box,
   .template-index .banner:first-of-type .banner__box {
     padding: 2.2rem 0.7rem 2.2rem 0.7rem;
+    margin-top: 4rem;
   }
   body[data-page-type='index'] #Banner-1 .banner__heading,
   .template-index #Banner-1 .banner__heading,
