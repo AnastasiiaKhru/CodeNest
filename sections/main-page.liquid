@@ -1,0 +1,161 @@
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* TRUE Full-width container styles - No side margins */
+  .main-page-full-width {
+    width: 100vw !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+
+  .main-page-content {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .rte.full-width {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Override ALL Shopify container constraints */
+  .main-page-full-width .page-width,
+  .main-page-full-width .page-width--narrow,
+  .main-page-full-width .container,
+  .main-page-full-width .section-padding {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Ensure content inside takes full width */
+  .main-page-full-width * {
+    max-width: none !important;
+  }
+
+  /* Navigation pills full width styling */
+  .main-page-full-width .nav-pills {
+    width: 100%;
+    padding: 0 2rem;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .main-page-full-width .nav-pill {
+    padding: 1rem 2rem;
+    min-width: 150px;
+    font-size: 1rem;
+  }
+
+  /* Services grid full width */
+  .main-page-full-width .services-grid {
+    width: 100%;
+    max-width: none !important;
+    padding: 0 2rem;
+    gap: 3.5rem;
+  }
+
+  /* Hero section full width */
+  .main-page-full-width .hero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-page-full-width .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Timing and CTA sections full width */
+  .main-page-full-width .timing-section,
+  .main-page-full-width .cta-section {
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .main-page-full-width .nav-pills {
+      padding: 0 1rem;
+      gap: 1rem;
+    }
+    
+    .main-page-full-width .services-grid {
+      padding: 0 1rem;
+    }
+    
+    .main-page-full-width .hero-content {
+      padding: 0 1rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="main-page-full-width section-{{ section.id }}-padding">
+  <div class="main-page-content">
+    <!-- PAGE TITLE REMOVED - No more annoying header! -->
+    <div class="rte full-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

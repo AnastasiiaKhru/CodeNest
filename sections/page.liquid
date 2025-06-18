@@ -1,0 +1,1178 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-blue: #4a90e2;
+        --secondary-blue: #357abd;
+        --accent-blue: #2c5aa0;
+        --text-primary: #2c3e50;
+        --text-secondary: #5a6c7d;
+        --text-muted: #7f8c8d;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-tertiary: #e9ecef;
+        --border-light: #dee2e6;
+        --border-medium: #ced4da;
+        --success-green: #28a745;
+        --warning-orange: #fd7e14;
+        --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+        --radius-sm: 0.25rem;
+        --radius-md: 0.375rem;
+        --radius-lg: 0.5rem;
+        --radius-xl: 0.75rem;
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background: var(--bg-primary);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    /* TEMPLATE SHOWCASE SECTION */
+    .template-showcase-section {
+        padding: 5rem 0;
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border-light);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .section-subtitle {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        line-height: 1.6;
+    }
+
+    .free-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: var(--success-green);
+        color: white;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    /* FILTER BAR */
+    .filter-container {
+        background: white;
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        margin-bottom: 3rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-light);
+    }
+
+    .search-wrapper {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 1rem 1rem 1rem 3rem;
+        border: 2px solid var(--border-medium);
+        border-radius: var(--radius-lg);
+        font-size: 1rem;
+        background: var(--bg-secondary);
+        transition: var(--transition);
+        outline: none;
+    }
+
+    .search-input:focus {
+        border-color: var(--primary-blue);
+        background: white;
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        pointer-events: none;
+    }
+
+    .filter-tabs {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-tab {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid var(--border-medium);
+        border-radius: var(--radius-lg);
+        background: white;
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: var(--transition);
+        text-transform: capitalize;
+    }
+
+    .filter-tab:hover,
+    .filter-tab.active {
+        background: var(--primary-blue);
+        border-color: var(--primary-blue);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* TEMPLATES GRID */
+    .templates-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    /* TEMPLATE CARDS */
+    .template-card {
+        background: white;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-light);
+        transition: var(--transition);
+        position: relative;
+    }
+
+    .template-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .template-media {
+        position: relative;
+        aspect-ratio: 9/16;
+        overflow: hidden;
+        background: var(--bg-tertiary);
+    }
+
+    .template-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .template-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .template-card:hover .template-video,
+    .template-card:hover .template-image {
+        transform: scale(1.05);
+    }
+
+    .template-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.1) 50%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
+        opacity: 0;
+        transition: var(--transition);
+        display: flex;
+        align-items: flex-end;
+        padding: 1.5rem;
+    }
+
+    .template-card:hover .template-overlay {
+        opacity: 1;
+    }
+
+    .template-actions {
+        display: flex;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .template-btn {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: var(--radius-lg);
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: var(--transition);
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .btn-download {
+        background: var(--success-green);
+        color: white;
+    }
+
+    .btn-preview {
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text-primary);
+        backdrop-filter: blur(10px);
+    }
+
+    .template-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .template-info {
+        padding: 1.5rem;
+    }
+
+    .template-category {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.75rem;
+        border-radius: var(--radius-md);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+    }
+
+    .category-video { background: #e3f2fd; color: #1565c0; }
+    .category-social { background: #f3e5f5; color: #7b1fa2; }
+    .category-event { background: #fff3e0; color: #ef6c00; }
+    .category-food { background: #e8f5e8; color: #2e7d32; }
+    .category-fashion { background: #fce4ec; color: #c2185b; }
+    .category-travel { background: #e0f2f1; color: #00695c; }
+    .category-business { background: #e8eaf6; color: #3f51b5; }
+    .category-realestate { background: #f1f8e9; color: #689f38; }
+    .category-technology { background: #f3e5f5; color: #9c27b0; }
+    .category-beauty { background: #fce4ec; color: #e91e63; }
+
+    .template-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+        line-height: 1.3;
+    }
+
+    .template-description {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+
+    .template-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-tag {
+        padding: 0.25rem 0.5rem;
+        background: var(--bg-tertiary);
+        color: var(--text-muted);
+        border-radius: var(--radius-sm);
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .template-stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-light);
+        font-size: 0.875rem;
+        color: var(--text-muted);
+    }
+
+    .template-rating {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .stars {
+        display: flex;
+        gap: 0.125rem;
+        color: #ffc107;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: white;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-light);
+    }
+
+    .cta-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .cta-description {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cta-btn {
+        padding: 1rem 2rem;
+        border-radius: var(--radius-lg);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-primary {
+        background: var(--primary-blue);
+        color: white;
+        border: 2px solid var(--primary-blue);
+    }
+
+    .btn-secondary {
+        background: white;
+        color: var(--primary-blue);
+        border: 2px solid var(--primary-blue);
+    }
+
+    .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+        background: var(--secondary-blue);
+        border-color: var(--secondary-blue);
+    }
+
+    .btn-secondary:hover {
+        background: var(--primary-blue);
+        color: white;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .templates-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .filter-tabs {
+            justify-content: flex-start;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-tab {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .template-actions {
+            flex-direction: column;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-btn {
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+        }
+    }
+
+    /* LOADING AND ANIMATIONS */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .template-card {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .template-card:nth-child(2) { animation-delay: 0.1s; }
+    .template-card:nth-child(3) { animation-delay: 0.2s; }
+    .template-card:nth-child(4) { animation-delay: 0.3s; }
+
+    .no-results {
+        text-align: center;
+        padding: 3rem 2rem;
+        color: var(--text-muted);
+        grid-column: 1 / -1;
+    }
+
+    .no-results-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+</style>
+
+<!-- PROFESSIONAL TEMPLATE SHOWCASE SECTION -->
+<section class="template-showcase-section">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            <div class="free-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+                FREE for Our Clients
+            </div>
+            <h2 class="section-title">Professional Design Templates</h2>
+            <p class="section-subtitle">
+                Exclusive collection of premium templates available at no cost to our valued clients. 
+                Each template is professionally designed, fully customizable, and ready to elevate your brand's visual presence.
+            </p>
+        </div>
+
+        <!-- Filter Container -->
+        <div class="filter-container">
+            <div class="search-wrapper">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="M21 21l-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search templates by name, category, or style..." id="templateSearch">
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Templates</button>
+                <button class="filter-tab" data-filter="video">Video Templates</button>
+                <button class="filter-tab" data-filter="social">Social Media</button>
+                <button class="filter-tab" data-filter="event">Events</button>
+                <button class="filter-tab" data-filter="food">Food & Dining</button>
+                <button class="filter-tab" data-filter="fashion">Fashion</button>
+                <button class="filter-tab" data-filter="travel">Travel</button>
+                <button class="filter-tab" data-filter="business">Business</button>
+                <button class="filter-tab" data-filter="realestate">Real Estate</button>
+                <button class="filter-tab" data-filter="technology">Technology</button>
+                <button class="filter-tab" data-filter="beauty">Beauty & Salon</button>
+            </div>
+        </div>
+
+        <!-- Templates Grid -->
+        <div class="templates-grid" id="templatesGrid">
+            
+            <!-- NEW Template 1: Real Estate Dream Home Alternative -->
+            <div class="template-card" data-category="realestate" data-name="real estate dream home minimalist brown alternative">
+                <div class="template-media">
+                    <img class="template-image" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Brown%20Minimalist%20Real%20Estate%20Agent%20Instagram%20Post%20Portrait-N9GnuigiuG8Z9zT8se6ZUefgwFgSMS.png" alt="Real Estate Dream Home Alternative">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Brown%20Minimalist%20Real%20Estate%20Agent%20Instagram%20Post%20Portrait-N9GnuigiuG8Z9zT8se6ZUefgwFgSMS.png" class="template-btn btn-download" download="real-estate-dream-home-alt.png">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-realestate">Real Estate</div>
+                    <h3 class="template-title">Dream Home - Alternative Design</h3>
+                    <p class="template-description">Alternative version of the inspirational real estate template with modern interior design. Perfect for property marketing and agent branding.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Real Estate</span>
+                        <span class="feature-tag">Property Marketing</span>
+                        <span class="feature-tag">Instagram Post</span>
+                        <span class="feature-tag">Professional</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.8</span>
+                        </div>
+                        <span>1.7k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW Template 2: Food Incoming Call Video -->
+            <div class="template-card" data-category="food" data-name="black white food incoming call video instagram story">
+                <div class="template-media">
+                    <video class="template-video" muted loop playsinline>
+                        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Black%20and%20white%20food%20incoming%20call%20video%20instagram%20story-wz2UvFfymUBguF725Egb36RJu8UpNs.mp4" type="video/mp4">
+                    </video>
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Black%20and%20white%20food%20incoming%20call%20video%20instagram%20story-wz2UvFfymUBguF725Egb36RJu8UpNs.mp4" class="template-btn btn-download" download="food-incoming-call-video.mp4">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-food">Food & Dining</div>
+                    <h3 class="template-title">Food Incoming Call Video</h3>
+                    <p class="template-description">Creative black and white food video template with incoming call interface. Perfect for restaurants and food delivery services.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Food Marketing</span>
+                        <span class="feature-tag">Video Template</span>
+                        <span class="feature-tag">Creative Design</span>
+                        <span class="feature-tag">Instagram Story</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.7</span>
+                        </div>
+                        <span>2.1k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW Template 3: AI Technology Marketing -->
+            <div class="template-card" data-category="technology" data-name="ai technology marketing boost sales modern minimalist">
+                <div class="template-media">
+                    <img class="template-image" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/White%20Pink%20and%20Black%20Modern%20Minimalist%203D%20Artificial%20Intelligence%20Technology%20Marketing%20Instagram%20Post-9fy42sA3pZoe4EPEcfAOQrxduJ1s3X.png" alt="AI Technology Marketing Post">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/White%20Pink%20and%20Black%20Modern%20Minimalist%203D%20Artificial%20Intelligence%20Technology%20Marketing%20Instagram%20Post-9fy42sA3pZoe4EPEcfAOQrxduJ1s3X.png" class="template-btn btn-download" download="ai-technology-marketing.png">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-technology">Technology</div>
+                    <h3 class="template-title">AI-Powered Sales Tools</h3>
+                    <p class="template-description">Modern 3D AI technology marketing template with colorful abstract shapes. Perfect for tech companies and AI service providers.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">AI Technology</span>
+                        <span class="feature-tag">3D Design</span>
+                        <span class="feature-tag">Sales Marketing</span>
+                        <span class="feature-tag">Modern</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.9</span>
+                        </div>
+                        <span>3.4k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW Template 4: Hair Salon We Are Open -->
+            <div class="template-card" data-category="beauty" data-name="minimal hair salon we are open instagram story">
+                <div class="template-media">
+                    <video class="template-video" muted loop playsinline>
+                        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Minimal%20We%20Are%20Open%20Hair%20Salon%20Instagram%20Story-SBwUpfmILx8U50gb5VA76Lg7yBFB83.mp4" type="video/mp4">
+                    </video>
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Minimal%20We%20Are%20Open%20Hair%20Salon%20Instagram%20Story-SBwUpfmILx8U50gb5VA76Lg7yBFB83.mp4" class="template-btn btn-download" download="hair-salon-open.mp4">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-beauty">Beauty & Salon</div>
+                    <h3 class="template-title">Hair Salon - We Are Open</h3>
+                    <p class="template-description">Minimal hair salon video template for business hours and reopening announcements. Perfect for beauty salons and hair stylists.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Hair Salon</span>
+                        <span class="feature-tag">Business Hours</span>
+                        <span class="feature-tag">Minimal Design</span>
+                        <span class="feature-tag">Instagram Story</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.8</span>
+                        </div>
+                        <span>2.6k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW Template 5: Beauty Salon Beige -->
+            <div class="template-card" data-category="beauty" data-name="beige black minimalist beauty salon story">
+                <div class="template-media">
+                    <video class="template-video" muted loop playsinline>
+                        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Beige%20and%20Black%20Minimalist%20Beauty%20Salon%20Your%20Story-QEYLRXP1tc5YBP2PY03iK413euImEe.mp4" type="video/mp4">
+                    </video>
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Beige%20and%20Black%20Minimalist%20Beauty%20Salon%20Your%20Story-QEYLRXP1tc5YBP2PY03iK413euImEe.mp4" class="template-btn btn-download" download="beauty-salon-beige.mp4">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-beauty">Beauty & Salon</div>
+                    <h3 class="template-title">Beauty Salon - Beige Minimalist</h3>
+                    <p class="template-description">Elegant beige and black minimalist beauty salon template. Perfect for spa services, beauty treatments, and salon marketing.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Beauty Salon</span>
+                        <span class="feature-tag">Spa Services</span>
+                        <span class="feature-tag">Minimalist</span>
+                        <span class="feature-tag">Instagram Story</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.9</span>
+                        </div>
+                        <span>3.1k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW Template 6: Fashion Coming Soon Blue -->
+            <div class="template-card" data-category="fashion" data-name="blue modern minimalist fashion coming soon instagram story">
+                <div class="template-media">
+                    <video class="template-video" muted loop playsinline>
+                        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blue%20Modern%20Minimalist%20Fashion%20Coming%20Soon%20Instagram%20Story-HhxpFembupVJ9dPBav7AMveAEVe2Jk.mp4" type="video/mp4">
+                    </video>
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blue%20Modern%20Minimalist%20Fashion%20Coming%20Soon%20Instagram%20Story-HhxpFembupVJ9dPBav7AMveAEVe2Jk.mp4" class="template-btn btn-download" download="fashion-coming-soon-blue.mp4">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-fashion">Fashion</div>
+                    <h3 class="template-title">Fashion Coming Soon - Blue</h3>
+                    <p class="template-description">Blue modern minimalist fashion coming soon template. Perfect for fashion brand announcements and collection launches.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Fashion Brand</span>
+                        <span class="feature-tag">Coming Soon</span>
+                        <span class="feature-tag">Modern Blue</span>
+                        <span class="feature-tag">Instagram Story</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.7</span>
+                        </div>
+                        <span>1.9k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Continue with previous templates... -->
+            <!-- Template 7: Autumn Harvest Video -->
+            <div class="template-card" data-category="video" data-name="autumn harvest photo collage animated">
+                <div class="template-media">
+                    <video class="template-video" muted loop playsinline>
+                        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Beige%20Brown%20Animated%20Autumn%20Harvest%20Photo%20Collage%20Instagram%20Reel-t2KMz2rPSXs6iLxuj1tU4hhmJN35gc.mp4" type="video/mp4">
+                    </video>
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Beige%20Brown%20Animated%20Autumn%20Harvest%20Photo%20Collage%20Instagram%20Reel-t2KMz2rPSXs6iLxuj1tU4hhmJN35gc.mp4" class="template-btn btn-download" download="autumn-harvest-template.mp4">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-video">Video Template</div>
+                    <h3 class="template-title">Autumn Harvest Photo Collage</h3>
+                    <p class="template-description">Animated autumn-themed photo collage with warm beige and brown tones. Perfect for seasonal Instagram Reels and social media content.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">9:16 Aspect Ratio</span>
+                        <span class="feature-tag">Animated</span>
+                        <span class="feature-tag">Photo Collage</span>
+                        <span class="feature-tag">Instagram Ready</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.9</span>
+                        </div>
+                        <span>2.3k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template 8: Girls Night Party Alternative -->
+            <div class="template-card" data-category="event" data-name="girls night party pink retro collage invitation alternative">
+                <div class="template-media">
+                    <img class="template-image" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Pink%20Retro%20Collage%20Night%20Party%20Invitation%20Instagram%20Story-26P0kKT8l6eif4SmMPCtTkA0oOUq1G.png" alt="Girls Night Party Alternative">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Pink%20Retro%20Collage%20Night%20Party%20Invitation%20Instagram%20Story-26P0kKT8l6eif4SmMPCtTkA0oOUq1G.png" class="template-btn btn-download" download="girls-night-party-alt.png">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-event">Events</div>
+                    <h3 class="template-title">Girls Night Party - Alternative</h3>
+                    <p class="template-description">Alternative version of the fun pink retro collage party invitation. Perfect for girls' night events and social celebrations.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Party Invitation</span>
+                        <span class="feature-tag">Retro Style</span>
+                        <span class="feature-tag">Photo Collage</span>
+                        <span class="feature-tag">Instagram Story</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.7</span>
+                        </div>
+                        <span>1.6k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template 9: Weekend Cheers Alternative -->
+            <div class="template-card" data-category="social" data-name="weekend cheers minimalist drinks cocktails alternative">
+                <div class="template-media">
+                    <img class="template-image" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Minimalist%20Happy%20Weekend%20Drinks%20Cocktails%20Cheers%20Friday%20Quote%20Toast%20Celebration%20Instagram%20Story.png-zKWIQDaI8rK2s56fIoRArjk1UrmOlA.jpeg" alt="Weekend Cheers Alternative">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Minimalist%20Happy%20Weekend%20Drinks%20Cocktails%20Cheers%20Friday%20Quote%20Toast%20Celebration%20Instagram%20Story.png-zKWIQDaI8rK2s56fIoRArjk1UrmOlA.jpeg" class="template-btn btn-download" download="weekend-cheers-alt.jpg">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-social">Social Media</div>
+                    <h3 class="template-title">Weekend Cheers - Alternative</h3>
+                    <p class="template-description">Alternative minimalist weekend celebration template with elegant champagne glasses. Perfect for lifestyle content and weekend vibes.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Weekend Vibes</span>
+                        <span class="feature-tag">Minimalist</span>
+                        <span class="feature-tag">Lifestyle</span>
+                        <span class="feature-tag">Instagram Story</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.8</span>
+                        </div>
+                        <span>2.5k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template 10: Travel Spain Alternative -->
+            <div class="template-card" data-category="travel" data-name="travel spain vintage beige photo collage alternative">
+                <div class="template-media">
+                    <img class="template-image" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Beige%20Vintage%20%20Travel%20Instagram%20Story.png-iJV07OwDrQVJNMvu9WCMm9zbn7CMvL.jpeg" alt="Travel Spain Alternative">
+                    <div class="template-overlay">
+                        <div class="template-actions">
+                            <a href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Beige%20Vintage%20%20Travel%20Instagram%20Story.png-iJV07OwDrQVJNMvu9WCMm9zbn7CMvL.jpeg" class="template-btn btn-download" download="travel-spain-alt.jpg">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7,10 12,15 17,10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download
+                            </a>
+                            <button class="template-btn btn-preview" onclick="previewTemplate(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21"></polygon>
+                                </svg>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <div class="template-category category-travel">Travel</div>
+                    <h3 class="template-title">My Trip to Spain - Alternative</h3>
+                    <p class="template-description">Alternative vintage-inspired travel photo collage with beige aesthetic. Perfect for travel bloggers and vacation memories.</p>
+                    <div class="template-features">
+                        <span class="feature-tag">Travel Blog</span>
+                        <span class="feature-tag">Photo Collage</span>
+                        <span class="feature-tag">Vintage Style</span>
+                        <span class="feature-tag">Instagram Story</span>
+                    </div>
+                    <div class="template-stats">
+                        <div class="template-rating">
+                            <div class="stars">★★★★★</div>
+                            <span>4.9</span>
+                        </div>
+                        <span>3.8k downloads</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more previous templates here... -->
+
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3 class="cta-title">Ready to Elevate Your Brand?</h3>
+            <p class="cta-description">
+                These premium templates are just the beginning. As our client, you'll receive unlimited access to our growing template library, 
+                plus custom design services tailored to your brand's unique needs.
+            </p>
+            <div class="cta-buttons">
+                <a href="/contact" class="cta-btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Become a Client
+                </a>
+                <a href="/services" class="cta-btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    View Our Services
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Template functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('templateSearch');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const templateCards = document.querySelectorAll('.template-card');
+    const templatesGrid = document.getElementById('templatesGrid');
+
+    // Search functionality
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        filterTemplates(searchTerm, getActiveFilter());
+    });
+
+    // Filter functionality
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            filterTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filter = this.getAttribute('data-filter');
+            const searchTerm = searchInput.value.toLowerCase();
+            filterTemplates(searchTerm, filter);
+        });
+    });
+
+    // Auto-play videos on hover
+    templateCards.forEach(card => {
+        const video = card.querySelector('.template-video');
+        if (video) {
+            card.addEventListener('mouseenter', function() {
+                video.play();
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+    });
+
+    function getActiveFilter() {
+        const activeTab = document.querySelector('.filter-tab.active');
+        return activeTab ? activeTab.getAttribute('data-filter') : 'all';
+    }
+
+    function filterTemplates(searchTerm, filter) {
+        let visibleCount = 0;
+        
+        templateCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            const name = card.getAttribute('data-name');
+            
+            const matchesSearch = name.includes(searchTerm);
+            const matchesFilter = filter === 'all' || category === filter;
+            
+            if (matchesSearch && matchesFilter) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (visibleCount === 0) {
+            showNoResults();
+        } else {
+            hideNoResults();
+        }
+    }
+
+    function showNoResults() {
+        if (!document.querySelector('.no-results')) {
+            const noResults = document.createElement('div');
+            noResults.className = 'no-results';
+            noResults.innerHTML = `
+                <div class="no-results-icon">🔍</div>
+                <h3>No templates found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            `;
+            templatesGrid.appendChild(noResults);
+        }
+    }
+
+    function hideNoResults() {
+        const noResults = document.querySelector('.no-results');
+        if (noResults) {
+            noResults.remove();
+        }
+    }
+});
+
+// Preview template function
+function previewTemplate(button) {
+    const card = button.closest('.template-card');
+    const media = card.querySelector('.template-video, .template-image');
+    
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    `;
+    
+    const mediaClone = media.cloneNode(true);
+    mediaClone.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    `;
+    
+    if (mediaClone.tagName === 'VIDEO') {
+        mediaClone.controls = true;
+        mediaClone.autoplay = true;
+    }
+    
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '×';
+    closeButton.style.cssText = `
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+    `;
+    
+    modal.appendChild(mediaClone);
+    modal.appendChild(closeButton);
+    document.body.appendChild(modal);
+    
+    closeButton.addEventListener('click', () => {
+        document.body.removeChild(modal);
+    });
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+}
+</script>
