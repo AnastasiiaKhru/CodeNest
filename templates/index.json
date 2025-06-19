@@ -50,31 +50,44 @@
         "show_text_below": true
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "collection_list_Vx34tK": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_FqFtpi": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "business-website-package"
+          }
+        },
+        "featured_collection_KnLezk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "starter-packages"
+          }
+        },
+        "featured_collection_Y4cnTg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "3-e-commerce-store-package"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_FqFtpi",
+        "featured_collection_KnLezk",
+        "featured_collection_Y4cnTg"
+      ],
+      "name": "t:sections.collection-list.presets.name",
       "settings": {
-        "collection": "best-web-options",
-        "products_to_show": 5,
-        "title": "Web Design & Branding Packages",
-        "heading_size": "h0",
-        "description": "<p>Explore our service bundles—from simple launches to full-scale branding and marketing solutions.</p>",
-        "show_description": true,
-        "description_style": "body",
+        "title": "Featured Collections",
+        "heading_size": "h1",
+        "image_ratio": "square",
         "columns_desktop": 3,
-        "enable_desktop_slider": true,
-        "full_width": true,
-        "show_view_all": true,
-        "view_all_style": "outline",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
+        "color_scheme": "",
+        "show_view_all": false,
         "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 44,
+        "swipe_on_mobile": false,
+        "padding_top": 36,
         "padding_bottom": 36
       }
     },
@@ -142,7 +155,7 @@
   },
   "order": [
     "image_banner_8tMaNB",
-    "featured_collection",
+    "collection_list_Vx34tK",
     "custom_liquid_Ub8Nee",
     "custom_liquid_khfpAx",
     "custom_liquid_Qe8wbB",
