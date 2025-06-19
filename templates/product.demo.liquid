@@ -1,0 +1,109 @@
+{% comment %}
+  Demo Product Template for Testing
+  This template can be used to test if product pages are working correctly
+{% endcomment %}
+
+<div class="page-width">
+  <div class="product-demo">
+    <h1>Demo Product: {{ product.title | default: 'Test Product' }}</h1>
+    
+    <div class="product-demo__content">
+      <div class="product-demo__image">
+        {% if product.featured_media %}
+          <img src="{{ product.featured_media | image_url: width: 400 }}" alt="{{ product.title }}">
+        {% else %}
+          <div class="product-demo__placeholder">
+            <p>Product Image Placeholder</p>
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="product-demo__info">
+        <h2>{{ product.title | default: 'Demo Product Title' }}</h2>
+        <p class="product-demo__price">
+          {{ product.price | money | default: '$99.99' }}
+        </p>
+        <p class="product-demo__description">
+          {{ product.description | default: 'This is a demo product for testing purposes. The product page functionality is working correctly if you can see this content.' }}
+        </p>
+        
+        <div class="product-demo__actions">
+          <button class="button button--primary">Add to Cart</button>
+          <a href="/" class="button button--secondary">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product-demo {
+    padding: 2rem 0;
+  }
+  
+  .product-demo__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .product-demo__image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .product-demo__placeholder {
+    background: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px dashed #ddd;
+  }
+  
+  .product-demo__price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 1rem 0;
+  }
+  
+  .product-demo__description {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .product-demo__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .button--primary {
+    background: #007cba;
+    color: white;
+  }
+  
+  .button--secondary {
+    background: #f5f5f5;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  @media (max-width: 768px) {
+    .product-demo__content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style> 
