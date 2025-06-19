@@ -15,7 +15,7 @@
         "text_BczUje": {
           "type": "text",
           "settings": {
-            "text": "<strong>Need expert guidance before you build? </strong>Book a personalized 30-minute strategy session for just <strong>$49 CAD</strong> — fully credited toward any website package when you move forward.",
+            "text": "",
             "text_style": "body"
           }
         },
@@ -37,45 +37,44 @@
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/width_800_a8889319-380e-4fd1-9836-95487a10e2dc.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image": "shopify://shop_images/A_group_of_four_to_five_Caucasian_professional_women_aged_late_20s_to_early_40s_face_very_detailed_looking_at_camera_engaged_in_a_serious_design_discussion_around_a_large_screen_displ.jpg",
+        "image_overlay_opacity": 20,
+        "image_height": "adapt",
         "image_behavior": "none",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-1",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
         "show_text_below": true
       }
     },
-    "featured_collection_TdyLJj": {
+    "featured_collection": {
       "type": "featured-collection",
-      "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "best-web-options",
-        "products_to_show": 3,
-        "title": "Featured collection",
+        "products_to_show": 5,
+        "title": "Web Design & Branding Packages",
         "heading_size": "h0",
-        "description": "",
-        "show_description": false,
+        "description": "<p>Explore our service bundles—from simple launches to full-scale branding and marketing solutions.</p>",
+        "show_description": true,
         "description_style": "body",
         "columns_desktop": 3,
         "enable_desktop_slider": true,
-        "full_width": false,
+        "full_width": true,
         "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "",
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 44,
         "padding_bottom": 36
       }
     },
@@ -143,7 +142,7 @@
   },
   "order": [
     "image_banner_8tMaNB",
-    "featured_collection_TdyLJj",
+    "featured_collection",
     "custom_liquid_Ub8Nee",
     "custom_liquid_khfpAx",
     "custom_liquid_Qe8wbB",
