@@ -1,0 +1,184 @@
+{% comment %}
+  E-commerce Package Features Section
+{% endcomment %}
+
+<style>
+.ecommerce-package-features {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.features-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #1e293b, #475569);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: 1.5rem;
+  color: #64748b;
+  max-width: 800px;
+  margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 32px;
+  background: white;
+  border-radius: 20px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  color: #10b981;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+}
+
+.feature-content h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+
+.feature-content p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.icon-check::before { content: "✓"; color: #10b981; }
+.icon-crown::before { content: "👑"; }
+.icon-payment::before { content: "💳"; }
+.icon-automation::before { content: "🤖"; }
+.icon-marketing::before { content: "📢"; }
+.icon-analytics::before { content: "📊"; }
+
+@media (max-width: 768px) {
+  .ecommerce-package-features {
+    padding: 80px 0;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .feature-item {
+    padding: 24px;
+  }
+}
+</style>
+
+<section class="ecommerce-package-features">
+  <div class="features-container">
+    <div class="section-header">
+      <h2 class="section-title">Enterprise-Level Features & Services</h2>
+      <p class="section-subtitle">Everything you need to build a million-dollar e-commerce empire with advanced features that scale with your success</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-item">
+        <span class="feature-icon icon-check"></span>
+        <div class="feature-content">
+          <h4>Unlimited Products & Categories</h4>
+          <p>No limits on your inventory. Scale from hundreds to thousands of products with advanced categorization and filtering systems.</p>
+        </div>
+      </div>
+      
+      <div class="feature-item">
+        <span class="feature-icon icon-check"></span>
+        <div class="feature-content">
+          <h4>Custom Enterprise Design</h4>
+          <p>Bespoke design tailored to your brand with unlimited revisions, custom animations, and premium UI/UX elements.</p>
+        </div>
+      </div>
+      
+      <div class="feature-item">
+        <span class="feature-icon icon-check"></span>
+        <div class="feature-content">
+          <h4>Multi-Language & Currency</h4>
+          <p>Sell globally with automatic translation, currency conversion, and localized checkout experiences.</p>
+        </div>
+      </div>
+      
+      <div class="feature-item">
+        <span class="feature-icon icon-check"></span>
+        <div class="feature-content">
+          <h4>Advanced Product Variants</h4>
+          <p>Complex product configurations with unlimited variants, custom options, and dynamic pricing rules.</p>
+        </div>
+      </div>
+      
+      <div class="feature-item">
+        <span class="feature-icon icon-check"></span>
+        <div class="feature-content">
+          <h4>Enterprise Security Suite</h4>
+          <p>Advanced fraud protection, SSL certificates, PCI compliance, and enterprise-grade security monitoring.</p>
+        </div>
+      </div>
+      
+      <div class="feature-item">
+        <span class="feature-icon icon-check"></span>
+        <div class="feature-content">
+          <h4>Performance Optimization</h4>
+          <p>Lightning-fast loading speeds with CDN integration, image optimization, and advanced caching systems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
