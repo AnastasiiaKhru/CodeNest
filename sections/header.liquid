@@ -7,11 +7,9 @@
   media="print"
   onload="this.media='all'"
 >
-
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
-
 {%- if section.settings.menu_type_desktop == 'mega' -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
@@ -21,13 +19,12 @@
     justify-self: start;
     margin-left: -1.2rem;
   }
-
-  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
-    .scrolled-past-header .header__heading-logo-wrapper {
-      width: 75%;
-    }
-  {%- endif -%}
-
+  
+  /* DISABLE sticky header logo size changes */
+  .scrolled-past-header .header__heading-logo-wrapper {
+    width: 100% !important; /* Keep logo same size always */
+  }
+  
   {%- if section.settings.menu_type_desktop != "drawer" -%}
     @media screen and (min-width: 990px) {
       header-drawer {
@@ -35,44 +32,68 @@
       }
     }
   {%- endif -%}
-
+  
   .menu-drawer-container {
     display: flex;
   }
-
+  
   .list-menu {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-
+  
   .list-menu--inline {
     display: inline-flex;
     flex-wrap: wrap;
   }
-
+  
   summary.list-menu__item {
     padding-right: 2.7rem;
   }
-
+  
   .list-menu__item {
     display: flex;
     align-items: center;
     line-height: calc(1 + 0.3 / var(--font-body-scale));
   }
-
+  
   .list-menu__item--link {
     text-decoration: none;
     padding-bottom: 1rem;
     padding-top: 1rem;
     line-height: calc(1 + 0.8 / var(--font-body-scale));
   }
-
+  
   @media screen and (min-width: 750px) {
     .list-menu__item--link {
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
     }
+  }
+  
+  /* FORCE CONSISTENT HEADER APPEARANCE */
+  .header-wrapper {
+    position: relative !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .header {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Prevent any sticky header classes from affecting appearance */
+  .shopify-section-header-sticky,
+  .shopify-section-header-hidden,
+  .scrolled-past-header {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 </style>
 
@@ -80,18 +101,18 @@
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
   }
-
+  
   .section-header {
-    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    position: relative !important; /* Changed from sticky to relative */
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
-
+  
   @media screen and (min-width: 750px) {
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
     }
   }
-
+  
   @media screen and (min-width: 990px) {
     .header {
       padding-top: {{ section.settings.padding_top }}px;
@@ -110,32 +131,19 @@
   endfor
 -%}
 
-{% liquid
-  assign header_tag = 'div'
-
-  if section.settings.sticky_header_type != 'none'
-    assign header_tag = 'sticky-header'
-  endif
-%}
-
-<{{ header_tag }}
-  {% if header_tag == 'sticky-header' %}
-    data-sticky-type="{{ section.settings.sticky_header_type }}"
-  {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
->
+<!-- FORCE REGULAR DIV INSTEAD OF STICKY-HEADER -->
+<div class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {%- liquid
     assign social_links = false
     assign localization_forms = false
-
     if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
       assign social_links = true
     endif
-
     if localization.available_countries.size > 1 and section.settings.enable_country_selector or section.settings.enable_language_selector and localization.available_languages.size > 1
       assign localization_forms = true
     endif
   -%}
+
   <header class="header page-width">
     <nav class="header__inline-menu">
       {%- if section.settings.menu != blank -%}
@@ -186,6 +194,7 @@
             {%- endform -%}
           </localization-form>
         {% endif %}
+
         {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
           <localization-form class="small-hide medium-hide" data-prevent-hide>
             {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
@@ -197,7 +206,9 @@
           </localization-form>
         {%- endif -%}
       </div>
+
       {% render 'header-search', input_id: 'Search-In-Modal' %}
+
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
@@ -226,6 +237,7 @@
           </span>
         </a>
       {%- endif -%}
+
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
@@ -244,7 +256,7 @@
       </a>
     </div>
   </header>
-</{{ header_tag }}>
+</div>
 
 {%- if settings.cart_type == 'notification' -%}
   {%- render 'cart-notification',
@@ -253,119 +265,7 @@
   -%}
 {%- endif -%}
 
-{% javascript %}
-  class StickyHeader extends HTMLElement {
-    constructor() {
-      super();
-    }
-
-    connectedCallback() {
-      this.header = document.querySelector('.section-header');
-      this.headerIsAlwaysSticky =
-        this.getAttribute('data-sticky-type') === 'always' ||
-        this.getAttribute('data-sticky-type') === 'reduce-logo-size';
-      this.headerBounds = {};
-
-      this.setHeaderHeight();
-
-      window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
-
-      if (this.headerIsAlwaysSticky) {
-        this.header.classList.add('shopify-section-header-sticky');
-      }
-
-      this.currentScrollTop = 0;
-      this.preventReveal = false;
-      this.predictiveSearch = this.querySelector('predictive-search');
-
-      this.onScrollHandler = this.onScroll.bind(this);
-      this.hideHeaderOnScrollUp = () => (this.preventReveal = true);
-
-      this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-      window.addEventListener('scroll', this.onScrollHandler, false);
-
-      this.createObserver();
-    }
-
-    setHeaderHeight() {
-      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
-    }
-
-    disconnectedCallback() {
-      this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-      window.removeEventListener('scroll', this.onScrollHandler);
-    }
-
-    createObserver() {
-      let observer = new IntersectionObserver((entries, observer) => {
-        this.headerBounds = entries[0].intersectionRect;
-        observer.disconnect();
-      });
-
-      observer.observe(this.header);
-    }
-
-    onScroll() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
-
-      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-        this.header.classList.add('scrolled-past-header');
-        if (this.preventHide) return;
-        requestAnimationFrame(this.hide.bind(this));
-      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-        this.header.classList.add('scrolled-past-header');
-        if (!this.preventReveal) {
-          requestAnimationFrame(this.reveal.bind(this));
-        } else {
-          window.clearTimeout(this.isScrolling);
-
-          this.isScrolling = setTimeout(() => {
-            this.preventReveal = false;
-          }, 66);
-
-          requestAnimationFrame(this.hide.bind(this));
-        }
-      } else if (scrollTop <= this.headerBounds.top) {
-        this.header.classList.remove('scrolled-past-header');
-        requestAnimationFrame(this.reset.bind(this));
-      }
-
-      this.currentScrollTop = scrollTop;
-    }
-
-    hide() {
-      if (this.headerIsAlwaysSticky) return;
-      this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
-      this.closeMenuDisclosure();
-      this.closeSearchModal();
-    }
-
-    reveal() {
-      if (this.headerIsAlwaysSticky) return;
-      this.header.classList.add('shopify-section-header-sticky', 'animate');
-      this.header.classList.remove('shopify-section-header-hidden');
-    }
-
-    reset() {
-      if (this.headerIsAlwaysSticky) return;
-      this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
-    }
-
-    closeMenuDisclosure() {
-      this.disclosures = this.disclosures || this.header.querySelectorAll('header-menu');
-      this.disclosures.forEach((disclosure) => disclosure.close());
-    }
-
-    closeSearchModal() {
-      this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-      this.searchModal.close(false);
-    }
-  }
-
-  customElements.define('sticky-header', StickyHeader);
-{% endjavascript %}
+<!-- REMOVED STICKY HEADER JAVASCRIPT COMPLETELY -->
 
 <script type="application/ld+json">
   {
@@ -501,7 +401,7 @@
           "label": "t:sections.header.settings.sticky_header_type.options__4.label"
         }
       ],
-      "default": "on-scroll-up",
+      "default": "none",
       "label": "t:sections.header.settings.sticky_header_type.label"
     },
     {
