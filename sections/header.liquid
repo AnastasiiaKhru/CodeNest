@@ -15,124 +15,188 @@
 {%- endif -%}
 
 <style>
-  /* FORCE NAVIGATION TO STAY LARGE LIKE ON HOME PAGE */
+  /* FORCE LARGE NAVIGATION BAR ON ALL PAGES */
   
-  /* Lock header height and padding to home page size */
-  .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem !important;
-    min-height: 80px !important; /* Force minimum height */
+  .header-wrapper {
+    padding: 0 !important;
+    min-height: 120px !important; /* Force large height */
     height: auto !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 101 !important;
     transform: none !important;
     transition: none !important;
   }
   
-  @media screen and (min-width: 990px) {
-    .header {
-      padding-top: {{ section.settings.padding_top }}px !important;
-      padding-bottom: {{ section.settings.padding_bottom }}px !important;
-      min-height: 100px !important; /* Larger minimum height on desktop */
-    }
-  }
-  
-  /* Force header wrapper to stay large */
-  .header-wrapper {
-    min-height: 80px !important;
+  .header {
+    padding: 24px 3rem !important; /* Large padding for single line */
+    min-height: 120px !important; /* Match wrapper height */
     height: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important; /* Keep single line */
     transform: none !important;
     transition: none !important;
   }
   
   @media screen and (min-width: 990px) {
     .header-wrapper {
-      min-height: 100px !important;
+      min-height: 140px !important; /* Even larger on desktop */
+    }
+    
+    .header {
+      padding: 32px 3rem !important; /* More padding on desktop */
+      min-height: 140px !important;
     }
   }
   
-  /* PREVENT LOGO FROM SHRINKING */
+  /* FORCE LOGO TO STAY LARGE */
+  .header__heading-link {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+  
   .header__heading-logo-wrapper {
-    width: 100% !important;
+    width: auto !important;
     max-width: none !important;
     transform: none !important;
     transition: none !important;
   }
   
   .header__heading-logo {
-    width: {{ settings.logo_width }}px !important;
+    width: {{ settings.logo_width | default: 120 }}px !important;
     height: auto !important;
-    max-width: {{ settings.logo_width }}px !important;
-    min-width: {{ settings.logo_width }}px !important;
+    max-width: {{ settings.logo_width | default: 120 }}px !important;
+    min-width: {{ settings.logo_width | default: 120 }}px !important;
     transform: none !important;
     transition: none !important;
   }
   
-  /* FORCE MENU ITEMS TO STAY LARGE */
+  /* FORCE MENU TO STAY LARGE AND SINGLE LINE */
+  .header__inline-menu {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 2rem !important;
+  }
+  
+  .list-menu--inline {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important; /* Keep single line */
+    gap: 2rem !important; /* Space between menu items */
+  }
+  
+  .list-menu__item {
+    display: flex !important;
+    align-items: center !important;
+    white-space: nowrap !important; /* Prevent text wrapping */
+  }
+  
   .list-menu__item--link {
-    text-decoration: none;
-    padding-bottom: 1rem !important;
-    padding-top: 1rem !important;
-    line-height: calc(1 + 0.8 / var(--font-body-scale)) !important;
-    font-size: inherit !important;
+    padding: 1rem 1.5rem !important; /* Large clickable area */
+    font-size: 1.1rem !important; /* Larger text */
+    line-height: 1.4 !important;
+    text-decoration: none !important;
     transform: none !important;
-    transition: none !important;
+    transition: color 0.3s ease !important;
+    white-space: nowrap !important;
   }
   
-  @media screen and (min-width: 750px) {
-    .list-menu__item--link {
-      padding-bottom: 0.5rem !important;
-      padding-top: 0.5rem !important;
-    }
+  /* FORCE ICONS SECTION TO STAY LARGE */
+  .header__icons {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
   }
   
-  /* DISABLE ALL STICKY HEADER SIZE REDUCTION */
-  .scrolled-past-header,
-  .scrolled-past-header .header,
+  .header__icon {
+    width: 2.4rem !important;
+    height: 2.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* DISABLE ALL STICKY HEADER SIZE CHANGES */
   .scrolled-past-header .header-wrapper,
-  .scrolled-past-header .header__heading-logo-wrapper,
-  .scrolled-past-header .header__heading-logo,
-  .shopify-section-header-sticky,
-  .shopify-section-header-sticky .header,
+  .scrolled-past-header .header,
   .shopify-section-header-sticky .header-wrapper,
-  .shopify-section-header-sticky .header__heading-logo-wrapper,
-  .shopify-section-header-sticky .header__heading-logo {
-    /* Keep LARGE size always */
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem !important;
-    min-height: 80px !important;
+  .shopify-section-header-sticky .header,
+  .header-wrapper.scrolled-past-header,
+  .header.scrolled-past-header {
+    padding: 24px 3rem !important;
+    min-height: 120px !important;
     height: auto !important;
-    width: 100% !important;
     transform: none !important;
     transition: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
   
   @media screen and (min-width: 990px) {
-    .scrolled-past-header,
-    .scrolled-past-header .header,
     .scrolled-past-header .header-wrapper,
-    .shopify-section-header-sticky,
+    .scrolled-past-header .header,
+    .shopify-section-header-sticky .header-wrapper,
     .shopify-section-header-sticky .header,
-    .shopify-section-header-sticky .header-wrapper {
-      padding-top: {{ section.settings.padding_top }}px !important;
-      padding-bottom: {{ section.settings.padding_bottom }}px !important;
-      min-height: 100px !important;
+    .header-wrapper.scrolled-past-header,
+    .header.scrolled-past-header {
+      padding: 32px 3rem !important;
+      min-height: 140px !important;
     }
   }
   
-  /* Force logo to NEVER shrink */
+  /* FORCE LOGO TO NEVER SHRINK ON SCROLL */
   .scrolled-past-header .header__heading-logo-wrapper,
-  .shopify-section-header-sticky .header__heading-logo-wrapper {
-    width: 100% !important;
-    transform: none !important;
-  }
-  
+  .shopify-section-header-sticky .header__heading-logo-wrapper,
   .scrolled-past-header .header__heading-logo,
   .shopify-section-header-sticky .header__heading-logo {
-    width: {{ settings.logo_width }}px !important;
+    width: {{ settings.logo_width | default: 120 }}px !important;
     height: auto !important;
     transform: none !important;
+    transition: none !important;
   }
   
-  /* Standard menu styling */
+  /* MOBILE RESPONSIVE - KEEP LARGE BUT ADJUST FOR MOBILE */
+  @media screen and (max-width: 989px) {
+    .header {
+      padding: 20px 1.5rem !important;
+      min-height: 100px !important;
+    }
+    
+    .header-wrapper {
+      min-height: 100px !important;
+    }
+    
+    .list-menu--inline {
+      gap: 1rem !important;
+    }
+    
+    .list-menu__item--link {
+      padding: 0.8rem 1rem !important;
+      font-size: 1rem !important;
+    }
+    
+    .header__icons {
+      gap: 1rem !important;
+    }
+    
+    .header__icon {
+      width: 2rem !important;
+      height: 2rem !important;
+    }
+  }
+  
+  /* ENSURE PROPER LAYOUT */
+  .page-width {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Standard menu drawer for mobile */
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
@@ -156,25 +220,16 @@
     margin: 0;
   }
   
-  .list-menu--inline {
-    display: inline-flex;
-    flex-wrap: wrap;
-  }
-  
   summary.list-menu__item {
     padding-right: 2.7rem;
-  }
-  
-  .list-menu__item {
-    display: flex;
-    align-items: center;
-    line-height: calc(1 + 0.3 / var(--font-body-scale));
   }
 </style>
 
 {%- style -%}
   .section-header {
     position: sticky;
+    top: 0;
+    z-index: 101;
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
   
@@ -195,19 +250,7 @@
   endfor
 -%}
 
-{% liquid
-  assign header_tag = 'div'
-  if section.settings.sticky_header_type != 'none'
-    assign header_tag = 'sticky-header'
-  endif
-%}
-
-<{{ header_tag }}
-  {% if header_tag == 'sticky-header' %}
-    data-sticky-type="{{ section.settings.sticky_header_type }}"
-  {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
->
+<div class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {%- liquid
     assign social_links = false
     assign localization_forms = false
@@ -220,10 +263,262 @@
   -%}
 
   <header class="header page-width">
+    {%- if section.settings.menu_type_desktop == 'drawer' -%}
+      <header-drawer data-breakpoint="tablet">
+        <details id="Details-menu-drawer-container" class="menu-drawer-container">
+          <summary
+            class="header__icon header__icon--menu header__icon--summary link focus-inset"
+            aria-label="{{ 'sections.header.menu' | t }}"
+          >
+            <span>
+              {% render 'icon-hamburger' %}
+              {% render 'icon-close' %}
+            </span>
+          </summary>
+          <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+            <div class="menu-drawer__inner-container">
+              <div class="menu-drawer__navigation-container">
+                <nav class="menu-drawer__navigation">
+                  <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+                    {%- for link in section.settings.menu.links -%}
+                      <li>
+                        {%- if link.links != blank -%}
+                          <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                            <summary
+                              id="HeaderDrawer-{{ link.handle }}"
+                              class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                            >
+                              {{ link.title | escape }}
+                              {% render 'icon-arrow', direction: 'right' %}
+                              {% render 'icon-arrow', direction: 'right' %}
+                            </summary>
+                            <div
+                              id="link-{{ link.handle | escape }}"
+                              class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                              tabindex="-1"
+                            >
+                              <div class="menu-drawer__inner-submenu">
+                                <button
+                                  class="menu-drawer__close-button link link--text focus-inset"
+                                  aria-expanded="true"
+                                >
+                                  {% render 'icon-arrow', direction: 'left' %}
+                                  {{ link.title | escape }}
+                                </button>
+                                <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                  {%- for childlink in link.links -%}
+                                    <li>
+                                      <a
+                                        id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                        href="{{ childlink.url }}"
+                                        class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                        {% if childlink.current %}
+                                          aria-current="page"
+                                        {% endif %}
+                                      >
+                                        {{ childlink.title | escape }}
+                                      </a>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              </div>
+                            </div>
+                          </details>
+                        {%- else -%}
+                          <a
+                            id="HeaderDrawer-{{ link.handle }}"
+                            href="{{ link.url }}"
+                            class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                            {% if link.current %}
+                              aria-current="page"
+                            {% endif %}
+                          >
+                            {{ link.title | escape }}
+                          </a>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </nav>
+                <div class="menu-drawer__utility-links">
+                  {%- if localization_forms -%}
+                    <div class="menu-drawer__localization header-localization">
+                      {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+                        <localization-form>
+                          {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
+                            <div>
+                              <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
+                                {{ 'localization.country_label' | t }}
+                              </h2>
+                              {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
+                            </div>
+                          {%- endform -%}
+                        </localization-form>
+                      {% endif %}
+                      {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+                        <localization-form>
+                          {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
+                            <div>
+                              <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
+                                {{ 'localization.language_label' | t }}
+                              </h2>
+                              {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
+                            </div>
+                          {%- endform -%}
+                        </localization-form>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                  {%- if social_links -%}
+                    <ul class="menu-drawer__utility-links list-unstyled" role="list">
+                      {%- if settings.social_twitter_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_twitter_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-twitter' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_facebook_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_facebook_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-facebook' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_pinterest_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_pinterest_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-pinterest' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_instagram_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_instagram_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-instagram' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_tiktok_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_tiktok_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-tiktok' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_tumblr_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_tumblr_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-tumblr' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_snapchat_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_snapchat_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-snapchat' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_youtube_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_youtube_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-youtube' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                      {%- if settings.social_vimeo_link != blank -%}
+                        <li>
+                          <a href="{{ settings.social_vimeo_link }}" class="link" target="_blank" rel="noopener" aria-describedby="a11y-external-message">
+                            {%- render 'icon-vimeo' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </header-drawer>
+    {%- endif -%}
+
     <nav class="header__inline-menu">
       {%- if section.settings.menu != blank -%}
         {%- if section.settings.menu_type_desktop == 'dropdown' -%}
-          {%- render 'header-dropdown-menu' -%}
+          <ul class="list-menu list-menu--inline" role="list">
+            {%- for link in section.settings.menu.links -%}
+              <li>
+                {%- if link.links != blank -%}
+                  <header-menu>
+                    <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
+                      <summary
+                        id="HeaderMenu-{{ link.handle }}"
+                        class="header__menu-item list-menu__item link focus-inset"
+                      >
+                        <span
+                          {%- if link.child_active %}
+                            class="header__active-menu-item"
+                          {% endif %}
+                        >
+                          {{- link.title | escape -}}
+                        </span>
+                        {% render 'icon-caret' %}
+                      </summary>
+                      <ul
+                        id="HeaderMenu-MenuList-{{ forloop.index }}"
+                        class="header__submenu list-menu list-menu--disclosure gradient caption-large motion-reduce global-settings-popup"
+                        role="list"
+                        tabindex="-1"
+                      >
+                        {%- for childlink in link.links -%}
+                          <li>
+                            <a
+                              id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                              href="{{ childlink.url }}"
+                              class="header__menu-item list-menu__item link link--text focus-inset caption-large"
+                              {% if childlink.current %}
+                                aria-current="page"
+                              {% endif %}
+                            >
+                              {{ childlink.title | escape }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </details>
+                  </header-menu>
+                {%- else -%}
+                  <a
+                    id="HeaderMenu-{{ link.handle }}"
+                    href="{{ link.url }}"
+                    class="header__menu-item list-menu__item link link--text focus-inset"
+                    {% if link.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    <span
+                      {%- if link.current %}
+                        class="header__active-menu-item"
+                      {% endif %}
+                    >
+                      {{- link.title | escape -}}
+                    </span>
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
         {%- elsif section.settings.menu_type_desktop != 'drawer' -%}
           {%- render 'header-mega-menu' -%}
         {%- endif -%}
@@ -331,7 +626,7 @@
       </a>
     </div>
   </header>
-</{{ header_tag }}>
+</div>
 
 {%- if settings.cart_type == 'notification' -%}
   {%- render 'cart-notification',
@@ -339,115 +634,6 @@
     desktop_menu_type: section.settings.menu_type_desktop
   -%}
 {%- endif -%}
-
-{% javascript %}
-  class StickyHeader extends HTMLElement {
-    constructor() {
-      super();
-    }
-
-    connectedCallback() {
-      this.header = document.querySelector('.section-header');
-      this.headerIsAlwaysSticky =
-        this.getAttribute('data-sticky-type') === 'always' ||
-        this.getAttribute('data-sticky-type') === 'reduce-logo-size';
-      this.headerBounds = {};
-      this.setHeaderHeight();
-
-      window.matchMedia('(max-width: 990px)').addEventListener('change', this.setHeaderHeight.bind(this));
-
-      if (this.headerIsAlwaysSticky) {
-        this.header.classList.add('shopify-section-header-sticky');
-      }
-
-      this.currentScrollTop = 0;
-      this.preventReveal = false;
-      this.predictiveSearch = this.querySelector('predictive-search');
-
-      this.onScrollHandler = this.onScroll.bind(this);
-      this.hideHeaderOnScrollUp = () => (this.preventReveal = true);
-
-      this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-      window.addEventListener('scroll', this.onScrollHandler, false);
-
-      this.createObserver();
-    }
-
-    setHeaderHeight() {
-      document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
-    }
-
-    disconnectedCallback() {
-      this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-      window.removeEventListener('scroll', this.onScrollHandler);
-    }
-
-    createObserver() {
-      let observer = new IntersectionObserver((entries, observer) => {
-        this.headerBounds = entries[0].intersectionRect;
-        observer.disconnect();
-      });
-
-      observer.observe(this.header);
-    }
-
-    onScroll() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
-
-      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-        this.header.classList.add('scrolled-past-header');
-        if (this.preventHide) return;
-        // REMOVED: Don't call hide() to prevent size changes
-        this.closeMenuDisclosure();
-        this.closeSearchModal();
-      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-        this.header.classList.add('scrolled-past-header');
-        if (!this.preventReveal) {
-          // REMOVED: Don't call reveal() to prevent size changes
-        } else {
-          window.clearTimeout(this.isScrolling);
-          this.isScrolling = setTimeout(() => {
-            this.preventReveal = false;
-          }, 66);
-          // REMOVED: Don't call hide() to prevent size changes
-        }
-      } else if (scrollTop <= this.headerBounds.top) {
-        this.header.classList.remove('scrolled-past-header');
-        // REMOVED: Don't call reset() to prevent size changes
-      }
-
-      this.currentScrollTop = scrollTop;
-    }
-
-    hide() {
-      // DISABLED: Don't change header size
-      this.closeMenuDisclosure();
-      this.closeSearchModal();
-    }
-
-    reveal() {
-      // DISABLED: Don't change header size
-    }
-
-    reset() {
-      // DISABLED: Don't change header size
-    }
-
-    closeMenuDisclosure() {
-      this.disclosures = this.disclosures || this.header.querySelectorAll('header-menu');
-      this.disclosures.forEach((disclosure) => disclosure.close());
-    }
-
-    closeSearchModal() {
-      this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-      this.searchModal.close(false);
-    }
-  }
-
-  customElements.define('sticky-header', StickyHeader);
-{% endjavascript %}
 
 <script type="application/ld+json">
   {
