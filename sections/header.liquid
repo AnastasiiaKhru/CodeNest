@@ -15,7 +15,7 @@
 {%- endif -%}
 
 <style>
-  /* FORCE LARGE NAVIGATION BAR ON ALL PAGES */
+  /* FORCE LARGE NAVIGATION BAR ON ALL PAGES - NO LOGO */
   
   .header-wrapper {
     padding: 0 !important;
@@ -51,37 +51,43 @@
     }
   }
   
-  /* FORCE LOGO TO STAY LARGE */
-  .header__heading-link {
-    flex: 0 0 auto !important;
-    margin: 0 !important;
-  }
-  
-  .header__heading-logo-wrapper {
-    width: auto !important;
-    max-width: none !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  
+  /* HIDE LOGO COMPLETELY */
+  .header__heading-link,
+  .header__heading-logo-wrapper,
   .header__heading-logo {
-    width: {{ settings.logo_width | default: 120 }}px !important;
-    height: auto !important;
-    max-width: {{ settings.logo_width | default: 120 }}px !important;
-    min-width: {{ settings.logo_width | default: 120 }}px !important;
-    transform: none !important;
-    transition: none !important;
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
-  /* FORCE MENU TO STAY LARGE AND SINGLE LINE */
+  /* ADJUST LAYOUT WITHOUT LOGO - CENTER MENU, RIGHT ALIGN ICONS */
+  .header {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    grid-template-areas: "menu icons" !important;
+    gap: 2rem !important;
+  }
+  
   .header__inline-menu {
-    flex: 1 1 auto !important;
+    grid-area: menu !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    margin: 0 2rem !important;
+    margin: 0 !important;
   }
   
+  .header__icons {
+    grid-area: icons !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    justify-self: end !important;
+  }
+  
+  /* FORCE MENU TO STAY LARGE AND SINGLE LINE */
   .list-menu--inline {
     display: flex !important;
     align-items: center !important;
@@ -107,13 +113,6 @@
   }
   
   /* FORCE ICONS SECTION TO STAY LARGE */
-  .header__icons {
-    flex: 0 0 auto !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 1.5rem !important;
-  }
-  
   .header__icon {
     width: 2.4rem !important;
     height: 2.4rem !important;
@@ -148,22 +147,13 @@
     }
   }
   
-  /* FORCE LOGO TO NEVER SHRINK ON SCROLL */
-  .scrolled-past-header .header__heading-logo-wrapper,
-  .shopify-section-header-sticky .header__heading-logo-wrapper,
-  .scrolled-past-header .header__heading-logo,
-  .shopify-section-header-sticky .header__heading-logo {
-    width: {{ settings.logo_width | default: 120 }}px !important;
-    height: auto !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  
   /* MOBILE RESPONSIVE - KEEP LARGE BUT ADJUST FOR MOBILE */
   @media screen and (max-width: 989px) {
     .header {
       padding: 20px 1.5rem !important;
       min-height: 100px !important;
+      grid-template-columns: 1fr auto !important;
+      gap: 1rem !important;
     }
     
     .header-wrapper {
@@ -525,32 +515,7 @@
       {%- endif -%}
     </nav>
 
-    <div class="header__heading-link">
-      <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-        {%- if settings.logo != blank -%}
-          <div class="header__heading-logo-wrapper">
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-            {{
-              settings.logo
-              | image_url: width: 600
-              | image_tag:
-                class: 'header__heading-logo',
-                widths: widths,
-                height: logo_height,
-                width: settings.logo_width,
-                alt: logo_alt,
-                sizes: sizes,
-                preload: true
-            }}
-          </div>
-        {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
-        {%- endif -%}
-      </a>
-    </div>
+    <!-- LOGO SECTION COMPLETELY REMOVED -->
 
     <div class="header__icons">
       <div class="desktop-localization-wrapper">
