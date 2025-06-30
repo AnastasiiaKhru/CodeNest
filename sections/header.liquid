@@ -15,14 +15,107 @@
 {%- endif -%}
 
 <style>
+  /* FORCE IDENTICAL HEADER ON ALL PAGES */
+  .header-wrapper,
+  .header-wrapper *,
+  .header,
+  .header * {
+    position: static !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Override ANY page-specific header styling */
+  body .section-header,
+  body.template-index .section-header,
+  body.template-product .section-header,
+  body.template-collection .section-header,
+  body.template-page .section-header {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px !important;
+  }
+  
+  /* Force header wrapper to be identical everywhere */
+  body .header-wrapper,
+  body.template-index .header-wrapper,
+  body.template-product .header-wrapper,
+  body.template-collection .header-wrapper,
+  body.template-page .header-wrapper {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10 !important;
+  }
+  
+  /* Force header to be identical everywhere */
+  body .header,
+  body.template-index .header,
+  body.template-product .header,
+  body.template-collection .header,
+  body.template-page .header {
+    position: relative !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem !important;
+  }
+  
+  @media screen and (min-width: 990px) {
+    body .header,
+    body.template-index .header,
+    body.template-product .header,
+    body.template-collection .header,
+    body.template-page .header {
+      padding-top: {{ section.settings.padding_top }}px !important;
+      padding-bottom: {{ section.settings.padding_bottom }}px !important;
+    }
+  }
+  
+  /* Disable ALL sticky header classes and effects */
+  .shopify-section-header-sticky,
+  .shopify-section-header-hidden,
+  .scrolled-past-header,
+  .animate {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
+  /* Force logo to stay same size always */
+  .header__heading-logo-wrapper,
+  .scrolled-past-header .header__heading-logo-wrapper {
+    width: 100% !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .header__heading-logo {
+    width: {{ settings.logo_width }}px !important;
+    height: auto !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
-  }
-  
-  /* DISABLE sticky header logo size changes */
-  .scrolled-past-header .header__heading-logo-wrapper {
-    width: 100% !important; /* Keep logo same size always */
   }
   
   {%- if section.settings.menu_type_desktop != "drawer" -%}
@@ -71,55 +164,7 @@
       padding-top: 0.5rem;
     }
   }
-  
-  /* FORCE CONSISTENT HEADER APPEARANCE */
-  .header-wrapper {
-    position: relative !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  
-  .header {
-    position: relative !important;
-    transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* Prevent any sticky header classes from affecting appearance */
-  .shopify-section-header-sticky,
-  .shopify-section-header-hidden,
-  .scrolled-past-header {
-    position: relative !important;
-    transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
 </style>
-
-{%- style -%}
-  .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
-  }
-  
-  .section-header {
-    position: relative !important; /* Changed from sticky to relative */
-    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
-  }
-  
-  @media screen and (min-width: 750px) {
-    .section-header {
-      margin-bottom: {{ section.settings.margin_bottom }}px;
-    }
-  }
-  
-  @media screen and (min-width: 990px) {
-    .header {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 
@@ -131,7 +176,7 @@
   endfor
 -%}
 
-<!-- FORCE REGULAR DIV INSTEAD OF STICKY-HEADER -->
+<!-- FORCE REGULAR DIV - NO DYNAMIC BEHAVIOR -->
 <div class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {%- liquid
     assign social_links = false
@@ -265,7 +310,41 @@
   -%}
 {%- endif -%}
 
-<!-- REMOVED STICKY HEADER JAVASCRIPT COMPLETELY -->
+<!-- DISABLE ALL JAVASCRIPT THAT COULD AFFECT HEADER -->
+<script>
+  // Disable any existing sticky header functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Remove any sticky header classes that might be added by other scripts
+    const header = document.querySelector('.section-header');
+    const headerWrapper = document.querySelector('.header-wrapper');
+    
+    if (header) {
+      header.classList.remove('shopify-section-header-sticky', 'shopify-section-header-hidden', 'scrolled-past-header', 'animate');
+      header.style.position = 'relative';
+      header.style.transform = 'none';
+      header.style.transition = 'none';
+    }
+    
+    if (headerWrapper) {
+      headerWrapper.classList.remove('shopify-section-header-sticky', 'shopify-section-header-hidden', 'scrolled-past-header', 'animate');
+      headerWrapper.style.position = 'relative';
+      headerWrapper.style.transform = 'none';
+      headerWrapper.style.transition = 'none';
+    }
+    
+    // Disable scroll listeners that might affect header
+    window.removeEventListener('scroll', function() {});
+  });
+  
+  // Override any custom elements that might affect header
+  if (customElements.get('sticky-header')) {
+    customElements.define('sticky-header-disabled', class extends HTMLElement {
+      connectedCallback() {
+        // Do nothing - disable sticky functionality
+      }
+    });
+  }
+</script>
 
 <script type="application/ld+json">
   {
