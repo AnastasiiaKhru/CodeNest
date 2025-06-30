@@ -15,21 +15,40 @@
 {%- endif -%}
 
 <style>
-  /* FORCE HEADER TO STAY SAME SIZE AS HOME PAGE */
+  /* FORCE NAVIGATION TO STAY LARGE LIKE ON HOME PAGE */
+  
+  /* Lock header height and padding to home page size */
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem !important;
-    min-height: auto !important;
+    min-height: 80px !important; /* Force minimum height */
     height: auto !important;
+    transform: none !important;
+    transition: none !important;
   }
   
   @media screen and (min-width: 990px) {
     .header {
       padding-top: {{ section.settings.padding_top }}px !important;
       padding-bottom: {{ section.settings.padding_bottom }}px !important;
+      min-height: 100px !important; /* Larger minimum height on desktop */
     }
   }
   
-  /* FORCE LOGO TO STAY FULL SIZE ALWAYS */
+  /* Force header wrapper to stay large */
+  .header-wrapper {
+    min-height: 80px !important;
+    height: auto !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .header-wrapper {
+      min-height: 100px !important;
+    }
+  }
+  
+  /* PREVENT LOGO FROM SHRINKING */
   .header__heading-logo-wrapper {
     width: 100% !important;
     max-width: none !important;
@@ -41,11 +60,65 @@
     width: {{ settings.logo_width }}px !important;
     height: auto !important;
     max-width: {{ settings.logo_width }}px !important;
+    min-width: {{ settings.logo_width }}px !important;
     transform: none !important;
     transition: none !important;
   }
   
-  /* PREVENT ANY SIZE REDUCTION FROM STICKY HEADER */
+  /* FORCE MENU ITEMS TO STAY LARGE */
+  .list-menu__item--link {
+    text-decoration: none;
+    padding-bottom: 1rem !important;
+    padding-top: 1rem !important;
+    line-height: calc(1 + 0.8 / var(--font-body-scale)) !important;
+    font-size: inherit !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .list-menu__item--link {
+      padding-bottom: 0.5rem !important;
+      padding-top: 0.5rem !important;
+    }
+  }
+  
+  /* DISABLE ALL STICKY HEADER SIZE REDUCTION */
+  .scrolled-past-header,
+  .scrolled-past-header .header,
+  .scrolled-past-header .header-wrapper,
+  .scrolled-past-header .header__heading-logo-wrapper,
+  .scrolled-past-header .header__heading-logo,
+  .shopify-section-header-sticky,
+  .shopify-section-header-sticky .header,
+  .shopify-section-header-sticky .header-wrapper,
+  .shopify-section-header-sticky .header__heading-logo-wrapper,
+  .shopify-section-header-sticky .header__heading-logo {
+    /* Keep LARGE size always */
+    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem !important;
+    min-height: 80px !important;
+    height: auto !important;
+    width: 100% !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .scrolled-past-header,
+    .scrolled-past-header .header,
+    .scrolled-past-header .header-wrapper,
+    .shopify-section-header-sticky,
+    .shopify-section-header-sticky .header,
+    .shopify-section-header-sticky .header-wrapper {
+      padding-top: {{ section.settings.padding_top }}px !important;
+      padding-bottom: {{ section.settings.padding_bottom }}px !important;
+      min-height: 100px !important;
+    }
+  }
+  
+  /* Force logo to NEVER shrink */
   .scrolled-past-header .header__heading-logo-wrapper,
   .shopify-section-header-sticky .header__heading-logo-wrapper {
     width: 100% !important;
@@ -59,55 +132,7 @@
     transform: none !important;
   }
   
-  /* FORCE HEADER HEIGHT TO STAY CONSISTENT */
-  .header-wrapper,
-  .scrolled-past-header .header-wrapper,
-  .shopify-section-header-sticky .header-wrapper {
-    min-height: auto !important;
-    height: auto !important;
-  }
-  
-  .header,
-  .scrolled-past-header .header,
-  .shopify-section-header-sticky .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem !important;
-    min-height: auto !important;
-    height: auto !important;
-  }
-  
-  @media screen and (min-width: 990px) {
-    .header,
-    .scrolled-past-header .header,
-    .shopify-section-header-sticky .header {
-      padding-top: {{ section.settings.padding_top }}px !important;
-      padding-bottom: {{ section.settings.padding_bottom }}px !important;
-    }
-  }
-  
-  /* FORCE MENU ITEMS TO STAY SAME SIZE */
-  .list-menu__item--link {
-    text-decoration: none;
-    padding-bottom: 1rem !important;
-    padding-top: 1rem !important;
-    line-height: calc(1 + 0.8 / var(--font-body-scale)) !important;
-    font-size: inherit !important;
-  }
-  
-  @media screen and (min-width: 750px) {
-    .list-menu__item--link {
-      padding-bottom: 0.5rem !important;
-      padding-top: 0.5rem !important;
-    }
-  }
-  
-  /* DISABLE ALL STICKY HEADER SIZE CHANGES */
-  .scrolled-past-header,
-  .shopify-section-header-sticky,
-  .shopify-section-header-hidden {
-    transform: none !important;
-    transition: none !important;
-  }
-  
+  /* Standard menu styling */
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
@@ -374,41 +399,40 @@
       if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
         this.header.classList.add('scrolled-past-header');
         if (this.preventHide) return;
-        requestAnimationFrame(this.hide.bind(this));
+        // REMOVED: Don't call hide() to prevent size changes
+        this.closeMenuDisclosure();
+        this.closeSearchModal();
       } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
         this.header.classList.add('scrolled-past-header');
         if (!this.preventReveal) {
-          requestAnimationFrame(this.reveal.bind(this));
+          // REMOVED: Don't call reveal() to prevent size changes
         } else {
           window.clearTimeout(this.isScrolling);
           this.isScrolling = setTimeout(() => {
             this.preventReveal = false;
           }, 66);
-          requestAnimationFrame(this.hide.bind(this));
+          // REMOVED: Don't call hide() to prevent size changes
         }
       } else if (scrollTop <= this.headerBounds.top) {
         this.header.classList.remove('scrolled-past-header');
-        requestAnimationFrame(this.reset.bind(this));
+        // REMOVED: Don't call reset() to prevent size changes
       }
 
       this.currentScrollTop = scrollTop;
     }
 
     hide() {
-      if (this.headerIsAlwaysSticky) return;
-      // REMOVED: Don't hide or change size
+      // DISABLED: Don't change header size
       this.closeMenuDisclosure();
       this.closeSearchModal();
     }
 
     reveal() {
-      if (this.headerIsAlwaysSticky) return;
-      // REMOVED: Don't change size on reveal
+      // DISABLED: Don't change header size
     }
 
     reset() {
-      if (this.headerIsAlwaysSticky) return;
-      // REMOVED: Don't reset size
+      // DISABLED: Don't change header size
     }
 
     closeMenuDisclosure() {
