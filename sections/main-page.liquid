@@ -13,24 +13,29 @@
     }
   }
 
-  /* STICKY NAVIGATION STYLES */
+  /* ENHANCED STICKY NAVIGATION STYLES */
   .sticky-nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     transform: translateY(-100%);
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
   }
 
   .sticky-nav.visible {
     transform: translateY(0);
+  }
+
+  .sticky-nav.scrolled {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
   }
 
   .sticky-nav-content {
@@ -40,57 +45,105 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
 
   .sticky-nav-logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #222;
+    color: #1a1a1a;
     text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 10;
+  }
+
+  .sticky-nav-logo:hover {
+    color: #007bff;
   }
 
   .sticky-nav-menu {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
+  }
+
+  .sticky-nav-menu li {
+    position: relative;
   }
 
   .sticky-nav-menu a {
-    color: #444;
+    color: #333;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .sticky-nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #007bff;
+    transition: width 0.3s ease;
   }
 
   .sticky-nav-menu a:hover {
     color: #007bff;
   }
 
+  .sticky-nav-menu a:hover::after {
+    width: 100%;
+  }
+
   .sticky-nav-cta {
-    background: #007bff;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.2s;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    border: none;
+    cursor: pointer;
   }
 
   .sticky-nav-cta:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
   }
 
-  /* Mobile hamburger menu */
+  /* Enhanced Mobile hamburger menu */
   .sticky-nav-mobile-toggle {
     display: none;
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #444;
+    color: #333;
     cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .sticky-nav-mobile-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .sticky-nav-mobile-toggle.active {
+    color: #007bff;
   }
 
   .sticky-nav-menu.mobile-open {
@@ -99,13 +152,48 @@
     left: 0;
     right: 0;
     background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     flex-direction: column;
-    padding: 1rem 2rem;
+    padding: 2rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    gap: 1.5rem;
+    animation: slideDown 0.3s ease-out;
   }
 
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .sticky-nav-menu.mobile-open a {
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .sticky-nav-menu.mobile-open a:last-child {
+    border-bottom: none;
+  }
+
+  /* Scroll progress indicator */
+  .scroll-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #00d4ff);
+    transition: width 0.1s ease;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* Mobile responsive improvements */
   @media screen and (max-width: 768px) {
     .sticky-nav-content {
       padding: 0.75rem 1rem;
@@ -128,8 +216,31 @@
     }
     
     .sticky-nav-cta {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .sticky-nav {
+      background: rgba(20, 20, 20, 0.92);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sticky-nav.scrolled {
+      background: rgba(20, 20, 20, 0.96);
+    }
+
+    .sticky-nav-logo,
+    .sticky-nav-menu a,
+    .sticky-nav-mobile-toggle {
+      color: #fff;
+    }
+
+    .sticky-nav-menu.mobile-open {
+      background: rgba(20, 20, 20, 0.98);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
   }
 
@@ -244,11 +355,12 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: box-shadow 0.2s;
+    transition: all 0.3s ease;
   }
 
   .service-card:hover {
-    box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
   }
 
   .service-card h3 {
@@ -271,21 +383,24 @@
   }
 {%- endstyle -%}
 
-<!-- STICKY NAVIGATION HTML -->
+<!-- ENHANCED STICKY NAVIGATION HTML -->
 <div class="sticky-nav" id="stickyNav">
   <div class="sticky-nav-content">
-    <a href="/" class="sticky-nav-logo">{{ shop.name }}</a>
-    <nav>
+    <a href="/" class="sticky-nav-logo" aria-label="Home">{{ shop.name }}</a>
+    <nav role="navigation" aria-label="Main navigation">
       <ul class="sticky-nav-menu" id="stickyNavMenu">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#services" aria-label="View our services">Services</a></li>
+        <li><a href="#about" aria-label="Learn about us">About</a></li>
+        <li><a href="#portfolio" aria-label="View our portfolio">Portfolio</a></li>
+        <li><a href="#contact" aria-label="Contact us">Contact</a></li>
       </ul>
     </nav>
-    <button class="sticky-nav-mobile-toggle" id="mobileToggle">☰</button>
-    <a href="#contact" class="sticky-nav-cta">Get Started</a>
+    <button class="sticky-nav-mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span>☰</span>
+    </button>
+    <a href="#contact" class="sticky-nav-cta" aria-label="Get started with our services">Get Started</a>
   </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
 </div>
 
 <div class="main-page-full-width section-{{ section.id }}-padding">
@@ -411,21 +526,36 @@
 </div>
 <!-- END MODERN SERVICES GRID -->
 
-<!-- STICKY NAVIGATION JAVASCRIPT -->
+<!-- ENHANCED STICKY NAVIGATION JAVASCRIPT -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const stickyNav = document.getElementById('stickyNav');
   const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('stickyNavMenu');
+  const scrollProgress = document.getElementById('scrollProgress');
   let lastScrollTop = 0;
-  let scrollThreshold = 100;
+  let scrollThreshold = 80;
+  let isScrolling = false;
   
-  // Scroll handling for sticky nav visibility
+  // Enhanced scroll handling with scroll progress
   function handleScroll() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / documentHeight) * 100;
     
+    // Update scroll progress bar
+    scrollProgress.style.width = scrollPercent + '%';
+    
+    // Add scrolled class for enhanced styling
+    if (scrollTop > 50) {
+      stickyNav.classList.add('scrolled');
+    } else {
+      stickyNav.classList.remove('scrolled');
+    }
+    
+    // Show/hide navigation based on scroll direction
     if (scrollTop > scrollThreshold) {
-      if (scrollTop > lastScrollTop) {
+      if (scrollTop > lastScrollTop && scrollTop > 200) {
         // Scrolling down - hide nav
         stickyNav.classList.remove('visible');
       } else {
@@ -438,50 +568,113 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     lastScrollTop = scrollTop;
+    isScrolling = false;
   }
   
-  // Throttle scroll events for better performance
-  let ticking = false;
+  // Optimized scroll event handling
   function requestTick() {
-    if (!ticking) {
+    if (!isScrolling) {
       requestAnimationFrame(handleScroll);
-      ticking = true;
-      setTimeout(() => { ticking = false; }, 16);
+      isScrolling = true;
     }
   }
   
-  window.addEventListener('scroll', requestTick);
+  window.addEventListener('scroll', requestTick, { passive: true });
   
-  // Mobile menu toggle
-  mobileToggle.addEventListener('click', function() {
+  // Enhanced mobile menu toggle with accessibility
+  mobileToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const isOpen = navMenu.classList.contains('mobile-open');
+    
     navMenu.classList.toggle('mobile-open');
+    mobileToggle.classList.toggle('active');
+    mobileToggle.setAttribute('aria-expanded', !isOpen);
+    
+    // Update hamburger icon
+    const icon = mobileToggle.querySelector('span');
+    icon.textContent = isOpen ? '☰' : '✕';
   });
   
   // Close mobile menu when clicking outside
   document.addEventListener('click', function(e) {
-    if (!stickyNav.contains(e.target)) {
+    if (!stickyNav.contains(e.target) && navMenu.classList.contains('mobile-open')) {
       navMenu.classList.remove('mobile-open');
+      mobileToggle.classList.remove('active');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.querySelector('span').textContent = '☰';
     }
   });
   
-  // Smooth scroll for navigation links
+  // Enhanced smooth scroll with offset for sticky nav
+  function smoothScrollTo(target) {
+    const targetElement = document.querySelector(target);
+    if (targetElement) {
+      const offsetTop = targetElement.offsetTop - 80; // Account for sticky nav height
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  }
+  
+  // Smooth scroll for navigation links with active state
   document.querySelectorAll('.sticky-nav-menu a, .sticky-nav-cta').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (href.startsWith('#')) {
         e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          // Close mobile menu if open
-          navMenu.classList.remove('mobile-open');
-          // Smooth scroll to target
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+        
+        // Close mobile menu if open
+        navMenu.classList.remove('mobile-open');
+        mobileToggle.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.querySelector('span').textContent = '☰';
+        
+        // Smooth scroll to target
+        smoothScrollTo(href);
+        
+        // Update active link
+        document.querySelectorAll('.sticky-nav-menu a').forEach(navLink => {
+          navLink.classList.remove('active');
+        });
+        this.classList.add('active');
+      }
+    });
+  });
+  
+  // Intersection Observer for active navigation states
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.sticky-nav-menu a[href^="#"]');
+  
+  const observerOptions = {
+    rootMargin: '-100px 0px -50% 0px',
+    threshold: 0
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const activeLink = document.querySelector(`.sticky-nav-menu a[href="#${entry.target.id}"]`);
+        if (activeLink) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          activeLink.classList.add('active');
         }
       }
     });
+  }, observerOptions);
+  
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+  
+  // Keyboard navigation support
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && navMenu.classList.contains('mobile-open')) {
+      navMenu.classList.remove('mobile-open');
+      mobileToggle.classList.remove('active');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.querySelector('span').textContent = '☰';
+    }
   });
 });
 </script>
