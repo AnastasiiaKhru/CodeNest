@@ -13,6 +13,126 @@
     }
   }
 
+  /* STICKY NAVIGATION STYLES */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .sticky-nav.visible {
+    transform: translateY(0);
+  }
+
+  .sticky-nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sticky-nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    text-decoration: none;
+  }
+
+  .sticky-nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sticky-nav-menu a {
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .sticky-nav-menu a:hover {
+    color: #007bff;
+  }
+
+  .sticky-nav-cta {
+    background: #007bff;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .sticky-nav-cta:hover {
+    background: #0056b3;
+    color: white;
+  }
+
+  /* Mobile hamburger menu */
+  .sticky-nav-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #444;
+    cursor: pointer;
+  }
+
+  .sticky-nav-menu.mobile-open {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  @media screen and (max-width: 768px) {
+    .sticky-nav-content {
+      padding: 0.75rem 1rem;
+    }
+    
+    .sticky-nav-menu {
+      display: none;
+    }
+    
+    .sticky-nav-menu.mobile-open {
+      display: flex;
+    }
+    
+    .sticky-nav-mobile-toggle {
+      display: block;
+    }
+    
+    .sticky-nav-logo {
+      font-size: 1.25rem;
+    }
+    
+    .sticky-nav-cta {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
   /* TRUE Full-width container styles - No side margins */
   .main-page-full-width {
     width: 100vw !important;
@@ -126,15 +246,18 @@
     gap: 1rem;
     transition: box-shadow 0.2s;
   }
+
   .service-card:hover {
     box-shadow: 0 6px 32px rgba(0,0,0,0.13);
   }
+
   .service-card h3 {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: #222;
   }
+
   .service-card ul {
     padding-left: 1.2rem;
     margin: 0;
@@ -142,10 +265,28 @@
     font-size: 1rem;
     line-height: 1.7;
   }
+
   .service-card li {
     margin-bottom: 0.7rem;
   }
 {%- endstyle -%}
+
+<!-- STICKY NAVIGATION HTML -->
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-content">
+    <a href="/" class="sticky-nav-logo">{{ shop.name }}</a>
+    <nav>
+      <ul class="sticky-nav-menu" id="stickyNavMenu">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="sticky-nav-mobile-toggle" id="mobileToggle">☰</button>
+    <a href="#contact" class="sticky-nav-cta">Get Started</a>
+  </div>
+</div>
 
 <div class="main-page-full-width section-{{ section.id }}-padding">
   <div class="main-page-content">
@@ -157,7 +298,7 @@
 </div>
 
 <!-- MODERN SERVICES GRID (MATCHES EXISTING STYLE) -->
-<div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 2.5rem;">
+<div class="services-grid" id="services" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 2.5rem;">
   <!-- Consulting & Strategy -->
   <div class="service-card">
     <h3>Consulting & Strategy</h3>
@@ -167,6 +308,7 @@
       <li>Project management & launch planning</li>
     </ul>
   </div>
+
   <!-- Mobile & App Services -->
   <div class="service-card">
     <h3>Mobile & App Services</h3>
@@ -176,6 +318,7 @@
       <li>Progressive web apps (PWAs)</li>
     </ul>
   </div>
+
   <!-- AI & Automation Services -->
   <div class="service-card">
     <h3>AI & Automation Services</h3>
@@ -185,6 +328,7 @@
       <li>Custom AI solutions for business</li>
     </ul>
   </div>
+
   <!-- Web Design & Development -->
   <div class="service-card">
     <h3>Web Design & Development</h3>
@@ -196,6 +340,7 @@
       <li><strong>Ultimate Growth Bundle – $1,097 CAD</strong><br>Premium Website + Premium Design Subscription + Analytics Setup</li>
     </ul>
   </div>
+
   <!-- Creative Subscriptions -->
   <div class="service-card">
     <h3>Creative Subscriptions (Monthly Design Plans)</h3>
@@ -206,6 +351,7 @@
       <li><strong>Influencer Igniter – $1,675 CAD</strong><br>Full branding kit, templates, content & strategy for creators (one-time)</li>
     </ul>
   </div>
+
   <!-- Marketing & Analytics Services -->
   <div class="service-card">
     <h3>Marketing & Analytics Services</h3>
@@ -216,6 +362,7 @@
       <li><strong>MicroTask Boost – from $127 CAD</strong><br>Small one-off marketing/design jobs</li>
     </ul>
   </div>
+
   <!-- Paid Ad Support Services -->
   <div class="service-card">
     <h3>Paid Ad Support Services</h3>
@@ -224,6 +371,7 @@
       <li><strong>AdLaunch Meta – $299 CAD</strong><br>Facebook/Instagram ad creative & setup</li>
     </ul>
   </div>
+
   <!-- Hosting -->
   <div class="service-card">
     <h3>Hosting</h3>
@@ -232,6 +380,7 @@
       <li><strong>CoreHost 3-Year – $244.90 CAD</strong><br>3-year hosting plan</li>
     </ul>
   </div>
+
   <!-- Brand Identity Design -->
   <div class="service-card">
     <h3>Brand Identity Design</h3>
@@ -241,6 +390,7 @@
       <li><strong>CardCraft Design – $156 CAD</strong><br>Custom-designed business cards (print-ready)</li>
     </ul>
   </div>
+
   <!-- Printed Marketing Collateral -->
   <div class="service-card">
     <h3>Printed Marketing Collateral</h3>
@@ -250,6 +400,7 @@
       <li><strong>PostMax (250) – $152 CAD</strong><br>Postcards for direct mail campaigns</li>
     </ul>
   </div>
+
   <!-- Gift Cards -->
   <div class="service-card">
     <h3>Gift Cards</h3>
@@ -259,6 +410,81 @@
   </div>
 </div>
 <!-- END MODERN SERVICES GRID -->
+
+<!-- STICKY NAVIGATION JAVASCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const stickyNav = document.getElementById('stickyNav');
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navMenu = document.getElementById('stickyNavMenu');
+  let lastScrollTop = 0;
+  let scrollThreshold = 100;
+  
+  // Scroll handling for sticky nav visibility
+  function handleScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > scrollThreshold) {
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down - hide nav
+        stickyNav.classList.remove('visible');
+      } else {
+        // Scrolling up - show nav
+        stickyNav.classList.add('visible');
+      }
+    } else {
+      // At top of page - hide nav
+      stickyNav.classList.remove('visible');
+    }
+    
+    lastScrollTop = scrollTop;
+  }
+  
+  // Throttle scroll events for better performance
+  let ticking = false;
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(handleScroll);
+      ticking = true;
+      setTimeout(() => { ticking = false; }, 16);
+    }
+  }
+  
+  window.addEventListener('scroll', requestTick);
+  
+  // Mobile menu toggle
+  mobileToggle.addEventListener('click', function() {
+    navMenu.classList.toggle('mobile-open');
+  });
+  
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!stickyNav.contains(e.target)) {
+      navMenu.classList.remove('mobile-open');
+    }
+  });
+  
+  // Smooth scroll for navigation links
+  document.querySelectorAll('.sticky-nav-menu a, .sticky-nav-cta').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          // Close mobile menu if open
+          navMenu.classList.remove('mobile-open');
+          // Smooth scroll to target
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+});
+</script>
 
 {% schema %}
 {
